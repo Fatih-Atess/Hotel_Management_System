@@ -56,6 +56,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.10, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.7.0, )"
             }
           },
           "imports": [
