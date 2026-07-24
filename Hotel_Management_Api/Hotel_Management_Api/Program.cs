@@ -1,28 +1,37 @@
-using Hotel_Management_Api.Repositories;
+// 1. IMPORT NAMESPACES
 using Hotel_Management_Api.Interfaces;
+using Hotel_Management_Api.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// --- PHASE 1: CONFIGURE SERVICES ---
+// Add services to the container before building the app.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
+// Swagger/OpenAPI configuration
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Dependency Injection: Registering our raw ADO.NET repository
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 
+// --- BUILD THE APPLICATION ---
+// This line separates the Service configuration from the Middleware pipeline.
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// --- PHASE 2: CONFIGURE THE HTTP REQUEST PIPELINE (MIDDLEWARE) ---
+
+// Enable Swagger UI for API testing (usually only in Development)
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
+// Start the server
 app.Run();

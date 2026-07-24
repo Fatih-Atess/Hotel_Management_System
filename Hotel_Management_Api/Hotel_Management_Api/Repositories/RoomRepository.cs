@@ -26,11 +26,11 @@ namespace Hotel_Management_Api.Repositories
                 await connection.OpenAsync();
 
                 string sql = @"
-                    SELECT r.Oda_ID, r.Oda_Numarasi, r.Tip, r.Gecelik_Fiyat
-                    FROM Rooms r
-                    WHERE r.Oda_ID NOT IN (
+                    SELECT r.ID, r.Oda_Numarasi, r.Tip, r.Gecelik_Fiyat
+                    FROM Room r
+                    WHERE r.ID NOT IN (
                         SELECT res.Oda_ID
-                        FROM Reservations res
+                        FROM Reservation res
                         WHERE res.Giris_Tarihi < @CheckOut AND res.Cikis_Tarihi > @CheckIn
                     )";
 
