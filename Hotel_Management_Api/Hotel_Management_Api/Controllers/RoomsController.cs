@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Hotel_Management_Api.Interfaces;
 using Hotel_Management_Api.Repositories;
+using Hotel_Management_Api.DTOs;
 
 namespace Hotel_Management_Api.Controllers
 {
@@ -38,6 +39,22 @@ namespace Hotel_Management_Api.Controllers
         {
             var rooms = await _roomRepository.GetAllRoomsAsync();
             return Ok(rooms);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRoom([FromBody] RoomDto room)
+        {
+            if(room.Gecelik_Fiyat < 1)
+            {
+                return BadRequest("Lütfen geçerli bir fiyat giriniz");
+            }
+
+            bool isSuccess = await _roomRepository.AddRoomAsync(room);
+            if (isSuccess)
+            {
+                return Conflict("Bu oda numarasına sahip başka bir oda mevcut. Lütfen başka bir oda numarası giriniz");
+            }
+            return Ok("Oda başarıyla eklendi");
         }
 
     }
