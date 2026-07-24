@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 // Dependency Injection: Registering our raw ADO.NET repository
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
 // --- BUILD THE APPLICATION ---
 // This line separates the Service configuration from the Middleware pipeline.
