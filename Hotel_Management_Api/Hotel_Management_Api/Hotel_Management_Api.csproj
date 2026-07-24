@@ -4,10 +4,20 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>7a00aafd-8856-4545-84cd-8208adb59d7c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Reservation.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
+    <PackageReference Include="MySql.Data" Version="9.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Models\Reservation.cs" />
   </ItemGroup>
 
 </Project>
