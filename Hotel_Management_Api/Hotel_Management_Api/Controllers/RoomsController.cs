@@ -15,7 +15,7 @@ namespace Hotel_Management_Api.Controllers
             _roomRepository = roomRepository;
         }
 
-        [HttpGet]
+        [HttpGet("available")]
         public async Task<IActionResult> GetAvailableRooms([FromQuery] DateTime checkIn, [FromQuery] DateTime checkOut)
         {
             if (checkIn.Date < DateTime.Today)
@@ -31,6 +31,13 @@ namespace Hotel_Management_Api.Controllers
             var availableRooms = await _roomRepository.GetAvailableRoomsAsync(checkIn, checkOut);
 
             return Ok(availableRooms);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllRooms()
+        {
+            var rooms = await _roomRepository.GetAllRoomsAsync();
+            return Ok(rooms);
         }
 
     }

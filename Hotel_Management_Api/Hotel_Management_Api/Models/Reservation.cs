@@ -2,7 +2,7 @@
 {
 	public class Reservation
 	{
-		public int Rezervasyon_ID { get; set; }
+		public int ID { get; set; }
 		public int Oda_ID { get; set; }
 		public string Musteri_Ad_Soyad { get; set; }
 		public DateTime Giris_Tarihi { get; set; }

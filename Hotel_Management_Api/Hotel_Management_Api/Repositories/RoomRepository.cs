@@ -2,6 +2,7 @@
 using Hotel_Management_Api.Models;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Hotel_Management_Api.DTOs;
 
 namespace Hotel_Management_Api.Repositories
 {
@@ -15,6 +16,43 @@ namespace Hotel_Management_Api.Repositories
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("DefaultConnection");
+        }
+
+        public async Task<IEnumerable<Room>> GetAllRoomsAsync()
+        {
+            var rooms = new List<Room>();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                string sql = "SELECT * FROM room";
+
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+
+                        while (await reader.ReadAsync())
+                        {
+                            rooms.Add(
+                            new Room
+                            {
+                                ID = reader.GetInt32("ID"),
+                                Oda_Numarasi = reader.GetString("Oda_Numarasi"),
+                                Tip = reader.GetString("Tip"),
+                                Gecelik_Fiyat = reader.GetDecimal("Gecelik_Fiyat")
+
+                            });
+                        }
+
+                    }
+                }
+
+
+            }
+            return rooms;
+
         }
 
         public async Task<IEnumerable<Room>> GetAvailableRoomsAsync(DateTime checkIn, DateTime checkOut)
@@ -45,7 +83,7 @@ namespace Hotel_Management_Api.Repositories
                         {
                             availableRooms.Add(new Room
                             {
-                                Oda_ID = reader.GetInt32("Oda_ID"),
+                                ID = reader.GetInt32("ID"),
                                 Oda_Numarasi = reader.GetString("Oda_Numarasi"),
                                 Tip = reader.GetString("Tip"),
                                 Gecelik_Fiyat = reader.GetDecimal("Gecelik_Fiyat")
