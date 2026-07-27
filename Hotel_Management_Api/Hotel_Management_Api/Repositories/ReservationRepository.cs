@@ -2,6 +2,7 @@
 using Hotel_Management_Api.Interfaces;
 using Hotel_Management_Api.Models;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System.Data;
 
 namespace Hotel_Management_Api.Repositories
@@ -77,6 +78,54 @@ namespace Hotel_Management_Api.Repositories
             }
         }
 
-        
+        public async Task<bool> DeleteReservationAsync(int id)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+
+                string query = "DELETE FROM reservation WHERE ID = @ID";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("ID", id);
+                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+
+        public async Task<IEnumerable<Reservation>> GetAllReservationsAsync()
+        {
+            var reservations = new List<Reservation>();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                string sql = "SELECT * FROM reservation";
+
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            reservations.Add(new Reservation
+                            {
+                                ID = reader.GetInt32("ID"),
+                                Oda_ID = reader.GetInt32("Oda_ID"),
+                                Musteri_Ad_Soyad = reader.GetString("Musteri_Ad_Soyad"),
+                                Giris_Tarihi = reader.GetDateTime("Giris_Tarihi"),
+                                Cikis_Tarihi = reader.GetDateTime("Cikis_Tarihi"),
+                                Toplam_Ucret = reader.GetDecimal("Toplam_Ucret")
+                            });
+                        }
+                    }
+                }
+            }
+            return reservations;
+        }
+
     }
 }

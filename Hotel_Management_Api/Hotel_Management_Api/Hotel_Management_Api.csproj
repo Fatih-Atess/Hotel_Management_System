@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Reservation.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Models\Reservation.cs" />
   </ItemGroup>
 
 </Project>

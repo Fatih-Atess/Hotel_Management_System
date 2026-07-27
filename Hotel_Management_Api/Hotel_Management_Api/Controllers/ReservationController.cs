@@ -41,6 +41,23 @@ namespace Hotel_Management_Api.Controllers
 
             return Ok("Rezervasyon başarıyla oluşturuldu.");
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteReservation(int id)
+        {
+            if(await _reservationRepository.DeleteReservationAsync(id) == false)
+            {
+                return NotFound("Böyle bir rezervasyon bulunamadı.");
+            }
+            return Ok("Rezervasyon başarıyla silindi");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GelAllReservations()
+        {
+            var reservations = await _reservationRepository.GetAllReservationsAsync();
+            return Ok(reservations);
+        }
         
     }
 }

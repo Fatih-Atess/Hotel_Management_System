@@ -50,7 +50,7 @@ namespace Hotel_Management_Api.Controllers
             }
 
             bool isSuccess = await _roomRepository.AddRoomAsync(room);
-            if (isSuccess)
+            if (isSuccess == false)
             {
                 return Conflict("Bu oda numarasına sahip başka bir oda mevcut. Lütfen başka bir oda numarası giriniz");
             }
@@ -62,7 +62,7 @@ namespace Hotel_Management_Api.Controllers
         {
             if(await _roomRepository.RemoveRoomAsync(id) == false)
             {
-                return BadRequest("Bu id'ye sahip oda bulunamadı.");
+                return NotFound("Bu id'ye sahip oda bulunamadı.");
             }
 
             return Ok("Oda başarıyla silindi.");
