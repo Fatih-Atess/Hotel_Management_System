@@ -76,5 +76,7 @@ namespace Hotel_Management_Api.Repositories
 
             }
         }
+
+        
     }
 }

@@ -57,5 +57,16 @@ namespace Hotel_Management_Api.Controllers
             return Ok("Oda başarıyla eklendi");
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> DeleteRoom(int id)
+        {
+            if(await _roomRepository.RemoveRoomAsync(id) == false)
+            {
+                return BadRequest("Bu id'ye sahip oda bulunamadı.");
+            }
+
+            return Ok("Oda başarıyla silindi.");
+        }
+
     }
 }

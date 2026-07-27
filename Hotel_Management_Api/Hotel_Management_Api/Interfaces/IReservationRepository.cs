@@ -6,5 +6,6 @@ namespace Hotel_Management_Api.Interfaces
     public interface IReservationRepository
     {
         Task<bool> CreateReservationAsync(CreateReservationRequest request);
+        
     }
 }

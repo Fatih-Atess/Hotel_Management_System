@@ -9,6 +9,10 @@ namespace Hotel_Management_Api.Interfaces
             Task<IEnumerable<Room>> GetAvailableRoomsAsync(DateTime checkIn, DateTime checkOut);
             Task<IEnumerable<Room>> GetAllRoomsAsync();
             Task<bool> AddRoomAsync(RoomDto room);
+            Task<bool> RemoveRoomAsync(int id);
+            
+
+
         }
     
 }

@@ -122,5 +122,22 @@ namespace Hotel_Management_Api.Repositories
                 }
             }
         }
+
+        public async Task<bool> RemoveRoomAsync(int id)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "DELETE FROM room WHERE ID = @ID";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    int rows = await cmd.ExecuteNonQueryAsync();
+                    return rows > 0;
+                }
+            }
+        }
     }
 }
