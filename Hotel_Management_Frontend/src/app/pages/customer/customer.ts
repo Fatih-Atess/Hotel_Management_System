@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../services/api';
@@ -11,7 +11,7 @@ import { Room, Reservation } from '../../models/models';
   templateUrl: './customer.html',
   styleUrl: './customer.css',
 })
-export class Customer {
+export class Customer implements OnInit{
   checkinDate: string = '';
   checkoutDate: string = '';
   customerName: string = '';

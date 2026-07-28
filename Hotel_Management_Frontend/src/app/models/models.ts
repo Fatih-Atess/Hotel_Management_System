@@ -1,6 +1,6 @@
 export interface Room {
     id: number;
-    oda_Numarasi: number;
+    oda_Numarasi: string;
     tip: string;
     gecelik_Fiyat: number;
 }

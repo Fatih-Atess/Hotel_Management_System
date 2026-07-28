@@ -1,1 +1,103 @@
-<p>admin works!</p>
+<div class="admin-container">
+    <h2>Yönetici Kontrol Paneli</h2>
+
+    <div class="admin-section card">
+        <h3>Yeni Oda Ekle</h3>
+        <div class="form-row">
+            <input type="text" [(ngModel)]="newRoom.oda_Numarasi" placeholder="Oda Numarası (Örn: 101)">
+            <input type="text" [(ngModel)]="newRoom.tip" placeholder="Oda Tipi (Örn: Standart)">
+            <input type="number" [(ngModel)]="newRoom.gecelik_Fiyat" placeholder="Gecelik Fiyat">
+            <button class="btn-success" (click)="addNewRoom()">Odayı Kaydet</button>
+        </div>
+    </div>
+
+    <hr>
+    
+    <div class="admin-section card">
+        <h3>Sistemdeki Tüm Odalar</h3>
+        <table class="data-table">
+      <thead>
+        <tr>
+          <th>Oda Numarası</th>
+          <th>Tip</th>
+          <th>Fiyat</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (room of allRooms; track room.id) {
+          <tr>
+            <td>{{ room.oda_Numarasi }}</td>
+            <td>{{ room.tip }}</td>
+            <td>{{ room.gecelik_Fiyat }} TL</td>
+            <td>
+              <button class="btn-danger" (click)="removeRoom(room.id)">Odayı Sil</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    </div>
+
+    <hr>
+
+    <div class="admin-section card">
+    <h3>Tüm Rezervasyonlar</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Müşteri Adı</th>
+          <th>Oda ID'si</th>
+          <th>Giriş Tarihi</th>
+          <th>Çıkış Tarihi</th>
+          <th>Toplam Ücret</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (res of allReservations; track res.id) {
+          <tr>
+            <td>{{ res.musteri_Ad_Soyad }}</td>
+            <td>{{ res.oda_ID }}</td>
+            <td>{{ res.giris_Tarihi | date:'dd.MM.yyyy' }}</td>
+            <td>{{ res.cikis_Tarihi | date:'dd.MM.yyyy' }}</td>
+            <td>{{ res.toplam_Ucret }} TL</td>
+            <td>
+              <button class="btn-danger" (click)="removeReservation(res.id)">İptal Et</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <div class="admin-section card">
+    <h3>Müsait Oda Kontrolü</h3>
+    <div class="form-row">
+      <input type="date" [(ngModel)]="filterCheckin">
+      <input type="date" [(ngModel)]="filterCheckout">
+      <button class="btn-primary" (click)="findAvailableRooms()">Sorgula</button>
+    </div>
+
+    @if (availableRooms.length > 0) {
+      <table class="data-table" style="margin-top: 15px;">
+        <thead>
+          <tr>
+            <th>Oda Numarası</th>
+            <th>Tip</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (room of availableRooms; track room.id) {
+            <tr>
+              <td>{{ room.oda_Numarasi }}</td>
+              <td>{{ room.tip }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>
