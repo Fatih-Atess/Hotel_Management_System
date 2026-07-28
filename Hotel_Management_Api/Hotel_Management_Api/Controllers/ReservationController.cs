@@ -10,7 +10,7 @@ namespace Hotel_Management_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationController: ControllerBase
+    public class ReservationController : ControllerBase
     {
         private readonly IReservationRepository _reservationRepository;
 
@@ -22,12 +22,12 @@ namespace Hotel_Management_Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateReservation([FromBody] CreateReservationRequest request)
         {
-            if(request.Cikis_Tarihi <= request.Giris_Tarihi)
+            if (request.Cikis_Tarihi <= request.Giris_Tarihi)
             {
                 return BadRequest("Hata: Çıkış tarihi, giriş tarihinden sonra olmalıdır.");
 
             }
-            if(request.Giris_Tarihi.Date < DateTime.UtcNow.Date)
+            if (request.Giris_Tarihi.Date < DateTime.UtcNow.Date)
             {
                 return BadRequest("Hata: Geçmiş bir tarihe rezervasyon yapılamaz.");
             }
@@ -42,8 +42,8 @@ namespace Hotel_Management_Api.Controllers
             return Ok(new { message = "Rezervasyon başarıyla oluşturuldu", isSuccess = true });
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteReservation(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReservation([FromRoute]int id)
         {
             if(await _reservationRepository.DeleteReservationAsync(id) == false)
             {

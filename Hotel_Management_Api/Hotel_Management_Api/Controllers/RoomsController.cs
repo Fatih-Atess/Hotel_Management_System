@@ -58,7 +58,7 @@ namespace Hotel_Management_Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRoom(int id)
+        public async Task<IActionResult> DeleteRoom([FromRoute] int id)
         {
             if(await _roomRepository.RemoveRoomAsync(id) == false)
             {
