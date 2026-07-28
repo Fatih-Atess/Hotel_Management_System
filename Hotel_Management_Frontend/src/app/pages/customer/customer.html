@@ -4,12 +4,12 @@
     <div class="filter-section card">
         <div class="form-group">
             <label>Giriş Tarihi (Check-in:)</label>
-            <input type="date" [(ngModel)]="checkinDate">
+            <input type="date" [(ngModel)]="checkinDate" [min]="minDateString">
         </div>
 
         <div class="form-group">
             <label>Çıkış Tarihi (Check-out):</label>
-            <input type="date" [(ngModel)]="checkoutDate">
+            <input type="date" [(ngModel)]="checkoutDate" [min]="checkinDate ? checkinDate : minDateString">
         </div>
 
         <button class="btn-primary" (click)="searchAvailableRooms()">Müsait Odaları Bul</button>

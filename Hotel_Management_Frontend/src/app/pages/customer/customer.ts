@@ -17,11 +17,34 @@ export class Customer {
   customerName: string = '';
   availableRooms: Room[] = [];
 
+  minDateString: string = '';
+
   constructor(private apiService: Api){}
+
+  ngOnInit(){
+    const today = new Date();
+    this.minDateString = today.toISOString().split('T')[0];
+  }
 
   searchAvailableRooms() {
     if(!this.checkinDate || !this.checkoutDate){
       alert('Lütfen giriş ve çıkış tarihlerini seçiniz.');
+      return;
+    }
+
+    const checkin = new Date(this.checkinDate);
+    const checkout = new Date(this.checkoutDate);
+    const today = new Date(this.minDateString);
+
+    if(checkin < today || checkout < today){
+      alert('Hata: Geçmiş bir tarihe rezervasyon yapılamaz.');
+      this.availableRooms = [];
+      return;
+    }
+
+    if(checkout <= checkin){
+      alert('Hata: Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
+      this.availableRooms = [];
       return;
     }
 
