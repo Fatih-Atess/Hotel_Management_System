@@ -19,14 +19,18 @@ export class Admin implements OnInit {
 
   newRoom: Room = { id: 0, oda_Numarasi: '', tip: '', gecelik_Fiyat: 0};
 
-  filterCheckin: string = '';
-  filterCheckout: string = '';
+  checkinDate: string = '';
+  checkoutDate: string = '';
+
+  minDateString: string = '';
 
   constructor(private apiService: Api, private cdr: ChangeDetectorRef){}
 
   ngOnInit(){
     this.loadAllRooms();
     this.loadAllReservations();
+    const today = new Date();
+    this.minDateString = today.toISOString().split('T')[0];
     console.log('Admin paneli yüklendi');
   }
 
@@ -50,14 +54,34 @@ export class Admin implements OnInit {
     });
   }
 
-  findAvailableRooms() {
-    if (!this.filterCheckin || !this.filterCheckout) {
-      alert('Lütfen tarih seçiniz.');
+  searchAvailableRooms() {
+    if(!this.checkinDate || !this.checkoutDate){
+      alert('Lütfen giriş ve çıkış tarihlerini seçiniz.');
       return;
     }
-    this.apiService.getAvailableRooms(this.filterCheckin, this.filterCheckout).subscribe({
-      next: (data) => this.availableRooms = data,
-      error: (err) => console.error('Müsait odalar aranırken hata:', err)
+
+    const checkin = new Date(this.checkinDate);
+    const checkout = new Date(this.checkoutDate);
+    const today = new Date(this.minDateString);
+
+    if(checkin < today || checkout < today){
+      alert('Hata: Geçmiş bir tarihe rezervasyon yapılamaz.');
+      this.availableRooms = [];
+      return;
+    }
+
+    if(checkout <= checkin){
+      alert('Hata: Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
+      this.availableRooms = [];
+      return;
+    }
+
+    this.apiService.getAvailableRooms(this.checkinDate, this.checkoutDate)
+    .subscribe({
+      next: (rooms) => {
+        this.availableRooms = rooms;
+      },
+      error: (err) => console.error('Oda araması sırasında hata oluştu:', err)
     });
   }
 
@@ -86,6 +110,7 @@ export class Admin implements OnInit {
         next: () => {
           alert('Oda silindi.');
           this.loadAllRooms();
+          this.loadAllReservations();
         },
         error: (err) => {
           alert('Hata: Bu odaya ait aktif bir rezervasyon bulunuyor olabilir.');

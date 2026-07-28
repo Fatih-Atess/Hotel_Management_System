@@ -76,24 +76,28 @@
   <div class="admin-section card">
     <h3>Müsait Oda Kontrolü</h3>
     <div class="form-row">
-      <input type="date" [(ngModel)]="filterCheckin">
-      <input type="date" [(ngModel)]="filterCheckout">
-      <button class="btn-primary" (click)="findAvailableRooms()">Sorgula</button>
+      <input type="date" [(ngModel)]="checkinDate" [min]="minDateString">
+      <input type="date" [(ngModel)]="checkoutDate" [min]="checkinDate ? checkinDate : minDateString">
+      <button class="btn-primary" (click)="searchAvailableRooms()">Sorgula</button>
     </div>
 
     @if (availableRooms.length > 0) {
       <table class="data-table" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>Oda Numarası</th>
-            <th>Tip</th>
+             <th>Oda ID</th>
+                <th>Oda Numarası</th>
+                <th>Oda Tipi</th>
+                <th>Gecelik Fiyat</th>
           </tr>
         </thead>
         <tbody>
           @for (room of availableRooms; track room.id) {
             <tr>
-              <td>{{ room.oda_Numarasi }}</td>
-              <td>{{ room.tip }}</td>
+              <td>{{ room.id }}</td>
+                    <td>{{ room.oda_Numarasi }}</td>
+                    <td>{{ room.tip }}</td>
+                    <td>{{ room.gecelik_Fiyat }} TL</td>
             </tr>
           }
         </tbody>

@@ -27,7 +27,6 @@
     <table class="data-table">
         <thead>
             <tr>
-                <th>Oda ID</th>
                 <th>Oda Numarası</th>
                 <th>Oda Tipi</th>
                 <th>Gecelik Fiyat</th>
@@ -37,7 +36,6 @@
         <tbody>
             @for(room of availableRooms; track room.id){
                 <tr>
-                    <td>{{ room.id }}</td>
                     <td>{{ room.oda_Numarasi }}</td>
                     <td>{{ room.tip }}</td>
                     <td>{{ room.gecelik_Fiyat }} TL</td>
