@@ -57,7 +57,7 @@ namespace Hotel_Management_Api.Controllers
             return Ok(new { message = "Oda başarıyla eklendi", isSuccess = true });
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
             if(await _roomRepository.RemoveRoomAsync(id) == false)
