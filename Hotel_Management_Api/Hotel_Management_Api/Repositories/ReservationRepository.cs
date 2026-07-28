@@ -22,7 +22,7 @@ namespace Hotel_Management_Api.Repositories
             {
                 await connection.OpenAsync();
 
-                string checkOverlapQuery = @"SELECT COUNT(1) FROM reservation
+                string checkOverlapQuery = @"SELECT COUNT(*) FROM reservation
                     WHERE Oda_ID = @Oda_ID 
                     AND (Giris_Tarihi < @Cikis_Tarihi 
                     AND Cikis_Tarihi > @Giris_Tarihi)";

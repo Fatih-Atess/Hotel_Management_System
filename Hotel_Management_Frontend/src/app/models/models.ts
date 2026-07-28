@@ -8,7 +8,7 @@ export interface Room {
 export interface Reservation{
     ID?: number;
     oda_ID: number;
-    musteri_Adi_Soyadi: string;
+    musteri_Ad_Soyad: string;
     giris_Tarihi: string;
     cikis_Tarihi: string;
     toplam_Ucret?: number;

@@ -11,4 +11,4 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient()  //Enables HTTP requests across the app
   ]
-};
+}; 

@@ -1,1 +1,57 @@
-<p>customer works!</p>
+<div class="customer-container">
+    <h2>Oda Arama ve Rezervasyon</h2>
+
+    <div class="filter-section card">
+        <div class="form-group">
+            <label>Giriş Tarihi (Check-in:)</label>
+            <input type="date" [(ngModel)]="checkinDate">
+        </div>
+
+        <div class="form-group">
+            <label>Çıkış Tarihi (Check-out):</label>
+            <input type="date" [(ngModel)]="checkoutDate">
+        </div>
+
+        <button class="btn-primary" (click)="searchAvailableRooms()">Müsait Odaları Bul</button>
+    </div>
+@if(availableRooms.length > 0){
+    <div class="rooms-section card">
+        <h3>Müsait Odalar</h3>
+    
+
+    <div class="booking-form">
+        <label>Ad Soyad:</label>
+        <input type="text" [(ngModel)]="customerName" placeholder="Rezervasyon yapacak kişinin adı" style="width: 300px;">
+    </div>
+    
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Oda ID</th>
+                <th>Oda Numarası</th>
+                <th>Oda Tipi</th>
+                <th>Gecelik Fiyat</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(room of availableRooms; track room.ID){
+                <tr>
+                    <td>{{ room.ID }}</td>
+                    <td>{{ room.oda_Numarasi }}</td>
+                    <td>{{ room.tip }}</td>
+                    <td>{{ room.gecelik_Fiyat }} TL</td>
+                    <td>
+                        <button class="btn-success" (click)="bookRoom(room)">Rezerve Et</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+  </div>
+}@else if (checkinDate && checkoutDate){
+    <div class="empty-state">
+        <p>Seçilen tarihlerde müsait oda bulunmamaktadır.</p>
+    </div>
+}
+</div>
