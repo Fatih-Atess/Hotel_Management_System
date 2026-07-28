@@ -39,7 +39,7 @@ namespace Hotel_Management_Api.Controllers
                 return Conflict("Seçili tarihler arasında oda zaten rezerve edilmiş veya oda bulunamadı. Lütfen farklı tarihler seçin.");
             }
 
-            return Ok("Rezervasyon başarıyla oluşturuldu.");
+            return Ok(new { message = "Rezervasyon başarıyla oluşturuldu", isSuccess = true });
         }
 
         [HttpDelete]
@@ -49,7 +49,8 @@ namespace Hotel_Management_Api.Controllers
             {
                 return NotFound("Böyle bir rezervasyon bulunamadı.");
             }
-            return Ok("Rezervasyon başarıyla silindi");
+           
+            return Ok(new { message = "Rezervasyon silindi", isSuccess = true });
         }
 
         [HttpGet]

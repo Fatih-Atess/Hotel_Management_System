@@ -54,7 +54,7 @@ namespace Hotel_Management_Api.Controllers
             {
                 return Conflict("Bu oda numarasına sahip başka bir oda mevcut. Lütfen başka bir oda numarası giriniz");
             }
-            return Ok("Oda başarıyla eklendi");
+            return Ok(new { message = "Oda başarıyla eklendi", isSuccess = true });
         }
 
         [HttpDelete]
@@ -65,7 +65,7 @@ namespace Hotel_Management_Api.Controllers
                 return NotFound("Bu id'ye sahip oda bulunamadı.");
             }
 
-            return Ok("Oda başarıyla silindi.");
+            return Ok(new { message = "Oda başarıyla silindi.", isSuccess = true });
         }
 
     }

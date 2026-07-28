@@ -41,7 +41,7 @@ export class Customer {
     }
 
     const newReservation: Reservation = {
-      oda_ID: room.ID,
+      oda_ID: room.id,
       musteri_Ad_Soyad: this.customerName,
       giris_Tarihi: this.checkinDate,
       cikis_Tarihi: this.checkoutDate

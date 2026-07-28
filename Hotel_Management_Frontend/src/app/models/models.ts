@@ -1,12 +1,12 @@
 export interface Room {
-    ID: number;
+    id: number;
     oda_Numarasi: number;
     tip: string;
     gecelik_Fiyat: number;
 }
 
 export interface Reservation{
-    ID?: number;
+    id?: number;
     oda_ID: number;
     musteri_Ad_Soyad: string;
     giris_Tarihi: string;
