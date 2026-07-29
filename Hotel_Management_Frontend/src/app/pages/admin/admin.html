@@ -1,113 +1,206 @@
 <div class="admin-container">
-    <h2>Yönetici Kontrol Paneli</h2>
+  <!-- Admin Dashboard Header -->
+  <div class="admin-header">
+    <div class="header-info">
+      <h1 class="admin-title font-serif"><i class="fa-solid fa-sliders"></i> Yönetici Kontrol Paneli</h1>
+      <p class="admin-subtitle">Otel odalarını yönetin, rezervasyonları takip edin ve müsaitlik durumunu sorgulayın.</p>
+    </div>
 
-    <div class="admin-section card">
-        <h3>Yeni Oda Ekle</h3>
-        <div class="form-row">
-            <input type="text" [(ngModel)]="newRoom.oda_Numarasi" placeholder="Oda Numarası (Örn: 101)">
-            <input type="text" [(ngModel)]="newRoom.tip" placeholder="Oda Tipi (Örn: Standart)">
-            <input type="number" [(ngModel)]="newRoom.gecelik_Fiyat" placeholder="Gecelik Fiyat">
-            <button class="btn-success" (click)="addNewRoom()">Odayı Kaydet</button>
+    <!-- Quick Stats Cards -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon icon-gold">
+          <i class="fa-solid fa-bed"></i>
         </div>
+        <div class="stat-details">
+          <span class="stat-value">{{ allRooms.length }}</span>
+          <span class="stat-label">Toplam Oda</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-blue">
+          <i class="fa-solid fa-bookmark"></i>
+        </div>
+        <div class="stat-details">
+          <span class="stat-value">{{ allReservations.length }}</span>
+          <span class="stat-label">Aktif Rezervasyon</span>
+        </div>
+      </div>
     </div>
-
-    <hr>
-    
-    <div class="admin-section card">
-        <h3>Sistemdeki Tüm Odalar</h3>
-        <table class="data-table">
-      <thead>
-        <tr>
-          <th>Oda Numarası</th>
-          <th>Tip</th>
-          <th>Fiyat</th>
-          <th>İşlem</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (room of allRooms; track room.id) {
-          <tr>
-            <td>{{ room.oda_Numarasi }}</td>
-            <td>{{ room.tip }}</td>
-            <td>{{ room.gecelik_Fiyat }} TL</td>
-            <td>
-              <button class="btn-danger" (click)="removeRoom(room.id)">Odayı Sil</button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-    </div>
-
-    <hr>
-
-    <div class="admin-section card">
-    <h3>Tüm Rezervasyonlar</h3>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Rezervasyon ID'si</th>
-          <th>Müşteri Adı</th>
-          <th>Oda ID'si</th>
-          <th>Oda Numarası</th>
-          <th>Tip</th>
-          <th>Giriş Tarihi</th>
-          <th>Çıkış Tarihi</th>
-          <th>Toplam Ücret</th>
-          <th>İşlem</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (res of allReservations; track res.id) {
-          <tr>
-            <td>{{ res.id}}</td>
-            <td>{{ res.musteri_Ad_Soyad }}</td>
-            <td>{{ res.oda_ID }}</td>
-            <td>{{ res.oda_Numarasi }}</td>
-            <td>{{ res.tip }}</td>
-            <td>{{ res.giris_Tarihi | date:'dd.MM.yyyy' }}</td>
-            <td>{{ res.cikis_Tarihi | date:'dd.MM.yyyy' }}</td>
-            <td>{{ res.toplam_Ucret }} TL</td>
-            <td>
-              <button class="btn-danger" (click)="removeReservation(res.id)">İptal Et</button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
   </div>
 
-  <hr>
-
+  <!-- Section 1: Yeni Oda Ekle -->
   <div class="admin-section card">
-    <h3>Müsait Oda Kontrolü</h3>
-    <div class="form-row">
-      <input type="date" [(ngModel)]="checkinDate" [min]="minDateString">
-      <input type="date" [(ngModel)]="checkoutDate" [min]="checkinDate ? checkinDate : minDateString">
-      <button class="btn-primary" (click)="searchAvailableRooms()">Sorgula</button>
+    <div class="section-title-bar">
+      <i class="fa-solid fa-circle-plus"></i>
+      <h3>Yeni Oda Ekle</h3>
+    </div>
+    
+    <div class="form-grid">
+      <div class="form-group">
+        <label><i class="fa-solid fa-hashtag"></i> Oda Numarası</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-door-closed"></i>
+          <input type="text" [(ngModel)]="newRoom.oda_Numarasi" placeholder="Örn: 101">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-layer-group"></i> Oda Tipi</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-star"></i>
+          <input type="text" [(ngModel)]="newRoom.tip" placeholder="Örn: Standart / Suite">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-turkish-lira-sign"></i> Gecelik Fiyat</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-tag"></i>
+          <input type="number" [(ngModel)]="newRoom.gecelik_Fiyat" placeholder="Örn: 1500">
+        </div>
+      </div>
+
+      <div class="form-group action-button-group">
+        <button class="btn-success btn-block" (click)="addNewRoom()">
+          <i class="fa-solid fa-plus-circle"></i> Odayı Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Sistemdeki Tüm Odalar -->
+  <div class="admin-section card">
+    <div class="section-title-bar">
+      <i class="fa-solid fa-list-check"></i>
+      <h3>Sistemdeki Tüm Odalar</h3>
+      <span class="badge-count">{{ allRooms.length }} Oda</span>
     </div>
 
-    @if (availableRooms.length > 0) {
-      <table class="data-table" style="margin-top: 15px;">
+    <div class="table-responsive">
+      <table class="data-table">
         <thead>
           <tr>
-             <th>Oda ID</th>
-                <th>Oda Numarası</th>
-                <th>Oda Tipi</th>
-                <th>Gecelik Fiyat</th>
+            <th><i class="fa-solid fa-hashtag"></i> Oda Numarası</th>
+            <th><i class="fa-solid fa-bed"></i> Tip</th>
+            <th><i class="fa-solid fa-money-bill-wave"></i> Gecelik Fiyat</th>
+            <th><i class="fa-solid fa-gear"></i> İşlem</th>
           </tr>
         </thead>
         <tbody>
-          @for (room of availableRooms; track room.id) {
+          @for (room of allRooms; track room.id) {
             <tr>
-              <td>{{ room.id }}</td>
-                    <td>{{ room.oda_Numarasi }}</td>
-                    <td>{{ room.tip }}</td>
-                    <td>{{ room.gecelik_Fiyat }} TL</td>
+              <td><span class="room-code-badge"><i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}</span></td>
+              <td><span class="type-pill">{{ room.tip }}</span></td>
+              <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
+              <td>
+                <button class="btn-danger btn-sm" (click)="removeRoom(room.id)">
+                  <i class="fa-solid fa-trash-can"></i> Odayı Sil
+                </button>
+              </td>
             </tr>
           }
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Section 3: Tüm Rezervasyonlar -->
+  <div class="admin-section card">
+    <div class="section-title-bar">
+      <i class="fa-solid fa-book-open"></i>
+      <h3>Tüm Rezervasyonlar</h3>
+      <span class="badge-count">{{ allReservations.length }} Kayıt</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th><i class="fa-solid fa-user"></i> Müşteri Adı</th>
+            <th>Oda ID</th>
+            <th><i class="fa-solid fa-door-open"></i> Oda No</th>
+            <th>Tip</th>
+            <th><i class="fa-solid fa-calendar-day"></i> Giriş Tarihi</th>
+            <th><i class="fa-solid fa-calendar-day"></i> Çıkış Tarihi</th>
+            <th><i class="fa-solid fa-coins"></i> Toplam Ücret</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (res of allReservations; track res.id) {
+            <tr>
+              <td class="text-muted">#{{ res.id }}</td>
+              <td class="font-weight-bold"><i class="fa-solid fa-user-check text-gold"></i> {{ res.musteri_Ad_Soyad }}</td>
+              <td>#{{ res.oda_ID }}</td>
+              <td><span class="badge-subtle">Oda {{ res.oda_Numarasi }}</span></td>
+              <td><span class="type-pill">{{ res.tip }}</span></td>
+              <td><i class="fa-regular fa-calendar-check text-green"></i> {{ res.giris_Tarihi | date:'dd.MM.yyyy' }}</td>
+              <td><i class="fa-regular fa-calendar-xmark text-red"></i> {{ res.cikis_Tarihi | date:'dd.MM.yyyy' }}</td>
+              <td class="price-cell">{{ res.toplam_Ucret }} TL</td>
+              <td>
+                <button class="btn-danger btn-sm" (click)="removeReservation(res.id)">
+                  <i class="fa-solid fa-xmark"></i> İptal Et
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section 4: Müsait Oda Kontrolü -->
+  <div class="admin-section card">
+    <div class="section-title-bar">
+      <i class="fa-solid fa-magnifying-glass-chart"></i>
+      <h3>Müsait Oda Kontrolü</h3>
+    </div>
+
+    <div class="form-grid filter-grid">
+      <div class="form-group">
+        <label><i class="fa-solid fa-calendar-plus"></i> Giriş Tarihi</label>
+        <input type="date" [(ngModel)]="checkinDate" [min]="minDateString">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-calendar-minus"></i> Çıkış Tarihi</label>
+        <input type="date" [(ngModel)]="checkoutDate" [min]="checkinDate ? checkinDate : minDateString">
+      </div>
+
+      <div class="form-group action-button-group">
+        <button class="btn-primary btn-block" (click)="searchAvailableRooms()">
+          <i class="fa-solid fa-magnifying-glass"></i> Müsaitlik Sorgula
+        </button>
+      </div>
+    </div>
+
+    @if (availableRooms.length > 0) {
+      <div class="table-responsive margin-top-md">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Oda ID</th>
+              <th>Oda Numarası</th>
+              <th>Oda Tipi</th>
+              <th>Gecelik Fiyat</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (room of availableRooms; track room.id) {
+              <tr>
+                <td class="text-muted">#{{ room.id }}</td>
+                <td><span class="room-code-badge"><i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}</span></td>
+                <td><span class="type-pill">{{ room.tip }}</span></td>
+                <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     }
   </div>
 </div>
+

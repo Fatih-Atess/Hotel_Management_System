@@ -1,55 +1,130 @@
 <div class="customer-container">
-    <h2>Oda Arama ve Rezervasyon</h2>
-
-    <div class="filter-section card">
-        <div class="form-group">
-            <label>Giriş Tarihi (Check-in:)</label>
-            <input type="date" [(ngModel)]="checkinDate" [min]="minDateString">
-        </div>
-
-        <div class="form-group">
-            <label>Çıkış Tarihi (Check-out):</label>
-            <input type="date" [(ngModel)]="checkoutDate" [min]="checkinDate ? checkinDate : minDateString">
-        </div>
-
-        <button class="btn-primary" (click)="searchAvailableRooms()">Müsait Odaları Bul</button>
+  <!-- Hero Section -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa-solid fa-star"></i> Beş Yıldızlı Lüks Deneyim</span>
+      <h1 class="hero-title font-serif">Lüks & Konforu Keşfedin</h1>
+      <p class="hero-subtitle">Unutulmaz bir konaklama için mükemmel odanızı seçin ve hemen rezervasyon yapın.</p>
     </div>
-@if(availableRooms.length > 0){
-    <div class="rooms-section card">
-        <h3>Müsait Odalar</h3>
-    
-
-    <div class="booking-form">
-        <label>Ad Soyad:</label>
-        <input type="text" [(ngModel)]="customerName" placeholder="Rezervasyon yapacak kişinin adı" style="width: 300px;">
-    </div>
-    
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>Oda Numarası</th>
-                <th>Oda Tipi</th>
-                <th>Gecelik Fiyat</th>
-                <th>İşlem</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for(room of availableRooms; track room.id){
-                <tr>
-                    <td>{{ room.oda_Numarasi }}</td>
-                    <td>{{ room.tip }}</td>
-                    <td>{{ room.gecelik_Fiyat }} TL</td>
-                    <td>
-                        <button class="btn-success" (click)="bookRoom(room)">Rezerve Et</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
   </div>
-}@else if (checkinDate && checkoutDate){
-    <div class="empty-state">
-        <p>Seçilen tarihlerde müsait oda bulunmamaktadır.</p>
+
+  <!-- Search & Filter Bar Card -->
+  <div class="filter-card card">
+    <div class="card-header-title">
+      <i class="fa-solid fa-calendar-days"></i>
+      <h3>Oda Arama ve Rezervasyon</h3>
     </div>
-}
+    
+    <div class="filter-grid">
+      <div class="form-group">
+        <label><i class="fa-solid fa-plane-arrival"></i> Giriş Tarihi (Check-in)</label>
+        <input type="date" [(ngModel)]="checkinDate" [min]="minDateString">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-plane-departure"></i> Çıkış Tarihi (Check-out)</label>
+        <input type="date" [(ngModel)]="checkoutDate" [min]="checkinDate ? checkinDate : minDateString">
+      </div>
+
+      <div class="form-group action-group">
+        <button class="btn-primary btn-search" (click)="searchAvailableRooms()">
+          <i class="fa-solid fa-magnifying-glass"></i> Müsait Odaları Bul
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Available Rooms Section -->
+  @if (availableRooms.length > 0) {
+    <div class="rooms-section card">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-door-open"></i>
+          <h3>Müsait Odalar</h3>
+          <span class="badge-count">{{ availableRooms.length }} Oda Bulundu</span>
+        </div>
+      </div>
+
+      <div class="booking-customer-box">
+        <div class="form-group">
+          <label><i class="fa-solid fa-user"></i> Rezervasyon Sahibi Ad Soyad:</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" [(ngModel)]="customerName" placeholder="Rezervasyon yapacak kişinin adı ve soyadı">
+          </div>
+        </div>
+      </div>
+
+      <!-- Modern Room Grid Cards -->
+      <div class="room-grid">
+        @for (room of availableRooms; track room.id) {
+          <div class="room-card">
+            <div class="room-card-header">
+              <div class="room-number">
+                <i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}
+              </div>
+              <span class="room-type-badge">{{ room.tip }}</span>
+            </div>
+            
+            <div class="room-amenities">
+              <span><i class="fa-solid fa-wifi"></i> Ücretsiz Wi-Fi</span>
+              <span><i class="fa-solid fa-snowflake"></i> Klima</span>
+              <span><i class="fa-solid fa-tv"></i> Smart TV</span>
+              <span><i class="fa-solid fa-mug-hot"></i> Kahvaltı</span>
+            </div>
+
+            <div class="room-card-footer">
+              <div class="room-price-tag">
+                <span class="price-amount">{{ room.gecelik_Fiyat }} TL</span>
+                <span class="price-period">/ Gecelik</span>
+              </div>
+
+              <button class="btn-success btn-book" (click)="bookRoom(room)">
+                <i class="fa-solid fa-check-circle"></i> Rezerve Et
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Detailed Table View -->
+      <div class="table-container">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th><i class="fa-solid fa-hashtag"></i> Oda Numarası</th>
+                <th><i class="fa-solid fa-bed"></i> Oda Tipi</th>
+                <th><i class="fa-solid fa-tag"></i> Gecelik Fiyat</th>
+                <th><i class="fa-solid fa-gear"></i> İşlem</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (room of availableRooms; track room.id) {
+                <tr>
+                  <td class="font-weight-bold">Oda {{ room.oda_Numarasi }}</td>
+                  <td><span class="badge-subtle">{{ room.tip }}</span></td>
+                  <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
+                  <td>
+                    <button class="btn-success btn-sm" (click)="bookRoom(room)">
+                      <i class="fa-solid fa-check"></i> Rezerve Et
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  } @else if (checkinDate && checkoutDate) {
+    <div class="empty-state card">
+      <div class="empty-icon">
+        <i class="fa-solid fa-calendar-xmark"></i>
+      </div>
+      <h3>Müsait Oda Bulunamadı</h3>
+      <p>Seçtiğiniz tarihler arasında boş oda bulunmamaktadır. Lütfen farklı bir tarih aralığı deneyiniz.</p>
+    </div>
+  }
 </div>
+

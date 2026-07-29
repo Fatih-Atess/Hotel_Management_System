@@ -1,10 +1,25 @@
 <header class="app-header">
+  <div class="header-container">
     <div class="logo">
-        <h2>Otel Yönetim Sistemi</h2>
+      <div class="logo-icon">
+        <i class="fa-solid fa-hotel"></i>
+      </div>
+      <div class="logo-text">
+        <h2>Grand Luxury</h2>
+        <span>Otel Yönetim Sistemi</span>
+      </div>
     </div>
-    <div class="navigation-links">
-        <a routerLink="/customer" routerLinkActive="active-link">Müşteri Portalı</a>
-        <a routerLink="/admin" routerLinkActive="active-link">Admin Paneli</a>
-
-    </div>
+    
+    <nav class="navigation-links">
+      <a routerLink="/customer" routerLinkActive="active-link">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Müşteri Portalı</span>
+      </a>
+      <a routerLink="/admin" routerLinkActive="active-link">
+        <i class="fa-solid fa-user-shield"></i>
+        <span>Admin Paneli</span>
+      </a>
+    </nav>
+  </div>
 </header>
+
