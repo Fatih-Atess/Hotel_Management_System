@@ -95,7 +95,7 @@ namespace Hotel_Management_Api.Repositories
             }
         }
 
-        public async Task<IEnumerable<Reservation>> GetAllReservationsAsync()
+        /*public async Task<IEnumerable<Reservation>> GetAllReservationsAsync()
         {
             var reservations = new List<Reservation>();
 
@@ -125,7 +125,42 @@ namespace Hotel_Management_Api.Repositories
                 }
             }
             return reservations;
+        }*/
+
+        public async Task<IEnumerable<ReservationRoomDto>> GetAllReservationsWithRoomsAsync()
+        {
+            var reservations = new List<ReservationRoomDto>();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                string sql = "SELECT res.ID, res.Oda_ID, r.Oda_Numarasi, r.Tip, res.Musteri_Ad_Soyad, res.Giris_Tarihi, res.Cikis_Tarihi, res.Toplam_Ucret FROM reservation res LEFT JOIN room r ON res.Oda_ID = r.ID;";
+
+                using (var command = new MySqlCommand(sql, connection))
+                {
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            reservations.Add(new ReservationRoomDto
+                            {
+                                ID = reader.GetInt32("ID"),
+                                Oda_ID = reader.GetInt32("Oda_ID"),
+                                Oda_Numarasi = reader.GetString("Oda_Numarasi"),
+                                Tip = reader.GetString("Tip"),
+                                Musteri_Ad_Soyad = reader.GetString("Musteri_Ad_Soyad"),
+                                Giris_Tarihi = reader.GetDateTime("Giris_Tarihi"),
+                                Cikis_Tarihi = reader.GetDateTime("Cikis_Tarihi"),
+                                Toplam_Ucret = reader.GetDecimal("Toplam_Ucret")
+                            });
+                        }
+                    }
+                }
+            }
+            return reservations;
         }
+
 
     }
 }

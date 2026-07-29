@@ -53,12 +53,20 @@ namespace Hotel_Management_Api.Controllers
             return Ok(new { message = "Rezervasyon silindi", isSuccess = true });
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public async Task<IActionResult> GelAllReservations()
         {
             var reservations = await _reservationRepository.GetAllReservationsAsync();
             return Ok(reservations);
+        }*/
+
+        [HttpGet]
+        public async Task<IActionResult> GelAllReservationsWithRooms()
+        {
+            var reservations = await _reservationRepository.GetAllReservationsWithRoomsAsync();
+            return Ok(reservations);
         }
-        
+
+
     }
 }

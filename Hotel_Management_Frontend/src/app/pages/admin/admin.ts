@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../services/api';
-import { Room, Reservation } from '../../models/models';
+import { Room, Reservation, ReservationRoom } from '../../models/models';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +14,7 @@ import { Room, Reservation } from '../../models/models';
 
 export class Admin implements OnInit {
   allRooms: Room[] = [];
-  allReservations: Reservation[] = [];
+  allReservations: ReservationRoom[] = [];
   availableRooms: Room[] = [];
 
   newRoom: Room = { id: 0, oda_Numarasi: '', tip: '', gecelik_Fiyat: 0};
@@ -45,7 +45,7 @@ export class Admin implements OnInit {
   }
 
   loadAllReservations(){
-    this.apiService.getAllReservations().subscribe({
+    this.apiService.getAllReservationsWithRooms().subscribe({
       next: (data) => {
         this.allReservations = data
         this.cdr.detectChanges();

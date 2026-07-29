@@ -46,8 +46,11 @@
     <table class="data-table">
       <thead>
         <tr>
+          <th>Rezervasyon ID'si</th>
           <th>Müşteri Adı</th>
           <th>Oda ID'si</th>
+          <th>Oda Numarası</th>
+          <th>Tip</th>
           <th>Giriş Tarihi</th>
           <th>Çıkış Tarihi</th>
           <th>Toplam Ücret</th>
@@ -57,8 +60,11 @@
       <tbody>
         @for (res of allReservations; track res.id) {
           <tr>
+            <td>{{ res.id}}</td>
             <td>{{ res.musteri_Ad_Soyad }}</td>
             <td>{{ res.oda_ID }}</td>
+            <td>{{ res.oda_Numarasi }}</td>
+            <td>{{ res.tip }}</td>
             <td>{{ res.giris_Tarihi | date:'dd.MM.yyyy' }}</td>
             <td>{{ res.cikis_Tarihi | date:'dd.MM.yyyy' }}</td>
             <td>{{ res.toplam_Ucret }} TL</td>

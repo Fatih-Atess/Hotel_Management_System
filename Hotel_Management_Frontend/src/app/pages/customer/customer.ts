@@ -73,9 +73,9 @@ export class Customer implements OnInit{
     this.apiService.createReservation(newReservation)
     .subscribe({
       next: (res) => {
-        alert('Rezervasyon başarıyla oluşturuldu!');
         this.customerName = '';
         this.searchAvailableRooms();
+        alert('Rezervasyon başarıyla oluşturuldu!');
       },
       error: (err) => {
         alert('Rezervasyon yapılamadı.');

@@ -8,6 +8,7 @@ namespace Hotel_Management_Api.Interfaces
     {
         Task<bool> CreateReservationAsync(CreateReservationRequest request);
         Task<bool> DeleteReservationAsync(int id);
-        Task<IEnumerable<Reservation>> GetAllReservationsAsync();
+        //Task<IEnumerable<Reservation>> GetAllReservationsAsync();
+        Task<IEnumerable<ReservationRoomDto>> GetAllReservationsWithRoomsAsync();
     }
 }
