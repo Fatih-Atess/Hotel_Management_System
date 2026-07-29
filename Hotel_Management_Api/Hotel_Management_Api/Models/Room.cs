@@ -6,5 +6,6 @@
         public string Oda_Numarasi { get; set; }
         public string Tip { get; set; }
         public decimal Gecelik_Fiyat { get; set; }
+        public int Durum { get; set; }
     }
 }

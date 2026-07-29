@@ -10,7 +10,11 @@ namespace Hotel_Management_Api.Interfaces
             Task<IEnumerable<Room>> GetAllRoomsAsync();
             Task<bool> AddRoomAsync(RoomDto room);
             Task<bool> RemoveRoomAsync(int id);
-            
+            Task<bool> UpdateRoomAsync(int id, RoomDto updatedRoom);
+            Task<bool> UpdateStatus(int id, int status);
+            Task<int> GetRoomStatusAsync(int id);
+
+
 
 
         }

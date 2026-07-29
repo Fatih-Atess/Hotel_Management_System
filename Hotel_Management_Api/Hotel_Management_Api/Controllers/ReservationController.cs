@@ -31,6 +31,14 @@ namespace Hotel_Management_Api.Controllers
             {
                 return BadRequest("Hata: Geçmiş bir tarihe rezervasyon yapılamaz.");
             }
+            if(request.Musteri_Ad_Soyad == "")
+            {
+                return BadRequest("Lütfen müşteri adı ve soy adı giriniz");
+            }
+            if(request.Oda_ID <= 0)
+            {
+                return BadRequest("Lütfen geçerli bir oda id'si giriniz");
+            }
 
             bool isSuccess = await _reservationRepository.CreateReservationAsync(request);
 
@@ -67,6 +75,6 @@ namespace Hotel_Management_Api.Controllers
             return Ok(reservations);
         }
 
-
+        
     }
 }

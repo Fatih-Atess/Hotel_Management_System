@@ -39,7 +39,8 @@ namespace Hotel_Management_Api.Repositories
                                 ID = reader.GetInt32("ID"),
                                 Oda_Numarasi = reader.GetString("Oda_Numarasi"),
                                 Tip = reader.GetString("Tip"),
-                                Gecelik_Fiyat = reader.GetDecimal("Gecelik_Fiyat")
+                                Gecelik_Fiyat = reader.GetDecimal("Gecelik_Fiyat"),
+                                Durum = reader.GetInt32("Durum")
                             });
                         }
                     }
@@ -79,7 +80,8 @@ namespace Hotel_Management_Api.Repositories
                                 ID = reader.GetInt32("ID"),
                                 Oda_Numarasi = reader.GetString("Oda_Numarasi"),
                                 Tip = reader.GetString("Tip"),
-                                Gecelik_Fiyat = reader.GetDecimal("Gecelik_Fiyat")
+                                Gecelik_Fiyat = reader.GetDecimal("Gecelik_Fiyat"),
+                                Durum = reader.GetInt32("Durum")
                             });
                         }
                     }
@@ -138,6 +140,63 @@ namespace Hotel_Management_Api.Repositories
                     return rows > 0;
                 }
             }
+        }
+
+        public async Task<bool> UpdateRoomAsync(int id, RoomDto updatedRoom)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE room SET Oda_Numarasi = @Oda_Numarasi, Tip = @Tip, Gecelik_Fiyat = @Gecelik_Fiyat WHERE ID = @Oda_ID";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Oda_ID", id);
+                    cmd.Parameters.AddWithValue("@Oda_Numarasi", updatedRoom.Oda_Numarasi);
+                    cmd.Parameters.AddWithValue("@Tip", updatedRoom.Tip);
+                    cmd.Parameters.AddWithValue("@Gecelik_Fiyat", updatedRoom.Gecelik_Fiyat);
+
+                    int rows = await cmd.ExecuteNonQueryAsync();
+                    return rows > 0;
+                }
+            }
+        }
+
+        public async Task<bool> UpdateStatus(int id,int status)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "UPDATE room SET Durum = @Status WHERE ID = @Oda_ID";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Oda_ID", id);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    
+
+                    int rows = await cmd.ExecuteNonQueryAsync();
+                    return rows > 0;
+                }
+            }
+        }
+
+        public async Task<int> GetRoomStatusAsync(int id)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                string query = "SELECT Durum FROM room WHERE ID = @ID";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                   
+                    int status =  Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                    return status;
+                }
+            }
+
         }
     }
 }

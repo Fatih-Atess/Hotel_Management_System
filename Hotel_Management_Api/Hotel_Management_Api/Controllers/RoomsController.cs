@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel_Management_Api.DTOs;
 using Hotel_Management_Api.Interfaces;
+using Hotel_Management_Api.Models;
 using Hotel_Management_Api.Repositories;
-using Hotel_Management_Api.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel_Management_Api.Controllers
 {
@@ -48,6 +49,14 @@ namespace Hotel_Management_Api.Controllers
             {
                 return BadRequest("Lütfen geçerli bir fiyat giriniz");
             }
+            if(room.Oda_Numarasi == "")
+            {
+                return BadRequest("Lütfen bir oda numarası giriniz");
+            }
+            if(room.Tip == "")
+            {
+                return BadRequest("Lütfen bir oda tipi giriniz");
+            }
 
             bool isSuccess = await _roomRepository.AddRoomAsync(room);
             if (isSuccess == false)
@@ -60,12 +69,43 @@ namespace Hotel_Management_Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom([FromRoute] int id)
         {
-            if(await _roomRepository.RemoveRoomAsync(id) == false)
+            if (await _roomRepository.GetRoomStatusAsync(id) == 1)
+            {
+                return BadRequest("Rezerve edilmiş bir odayı silemezsiniz");
+            }
+            if (await _roomRepository.RemoveRoomAsync(id) == false)
             {
                 return NotFound("Bu id'ye sahip oda bulunamadı.");
             }
+            
 
             return Ok(new { message = "Oda başarıyla silindi.", isSuccess = true });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateRoom([FromRoute] int id, [FromBody] RoomDto updatedRoom)
+        {
+            if (updatedRoom.Gecelik_Fiyat < 1)
+            {
+                return BadRequest("Lütfen geçerli bir fiyat giriniz");
+            }
+            if (updatedRoom.Oda_Numarasi == "")
+            {
+                return BadRequest("Lütfen bir oda numarası giriniz");
+            }
+            if (updatedRoom.Tip == "")
+            {
+                return BadRequest("Lütfen bir oda tipi giriniz");
+            }
+            if(await _roomRepository.GetRoomStatusAsync(id) == 1)
+            {
+                return BadRequest("Rezerve edilmiş bir oda güncellenemez");
+            }
+            if (await _roomRepository.UpdateRoomAsync(id, updatedRoom) == false)
+            {
+                return NotFound("Bu id'ye sahip oda bulunamadı");
+            }
+            return Ok(new { message = "Oda başarıyla güncellendi", isSuccess = true });
         }
 
     }

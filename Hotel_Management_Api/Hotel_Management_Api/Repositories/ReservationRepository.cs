@@ -10,10 +10,12 @@ namespace Hotel_Management_Api.Repositories
     public class ReservationRepository: IReservationRepository
     {
         private readonly string _connectionString;
+        private readonly IRoomRepository _roomRepository;
 
-        public ReservationRepository(IConfiguration configuration)
+        public ReservationRepository(IConfiguration configuration, IRoomRepository roomRepository)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _roomRepository = roomRepository;
         }
 
         public async Task<bool> CreateReservationAsync(CreateReservationRequest request)
@@ -55,6 +57,7 @@ namespace Hotel_Management_Api.Repositories
                     nightPrice = Convert.ToDecimal(result);
                 }
 
+         
                 int days = (request.Cikis_Tarihi - request.Giris_Tarihi).Days;
                 decimal toplamUcret = days * nightPrice;
 
@@ -72,9 +75,13 @@ namespace Hotel_Management_Api.Repositories
                     cmd.Parameters.AddWithValue("@Toplam_Ucret", toplamUcret);
 
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
-                    return rowsAffected > 0;
+                    if (rowsAffected > 0)
+                    {
+                        await _roomRepository.UpdateStatus(request.Oda_ID, 1);
+                        return true;
+                    }
                 }
-
+                return false;
             }
         }
 
@@ -90,8 +97,13 @@ namespace Hotel_Management_Api.Repositories
                 {
                     cmd.Parameters.AddWithValue("ID", id);
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
-                    return rowsAffected > 0;
+                    if (rowsAffected > 0)
+                    {
+                        await _roomRepository.UpdateStatus(id, 0);
+                        return true;
+                    }
                 }
+                return false;
             }
         }
 
