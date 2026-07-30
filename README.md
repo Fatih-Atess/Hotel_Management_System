@@ -13,10 +13,20 @@ A full-stack, enterprise-ready **Hotel Management System** built with a modern *
 - **Validation & Date Constraints**: Built-in validation preventing booking past dates or invalid check-out ranges.
 
 ### 🛡️ Admin Management Dashboard (`/admin`)
-- **Room Management (CRUD)**: Add new hotel rooms with room numbers, room types (Single, Double, Suite, etc.), and nightly prices, or remove existing rooms.
+- **Room Management (CRUD)**:
+  - **Create**: Add new hotel rooms with room numbers, room types (Single, Double, Suite, etc.), and nightly prices.
+  - **Update (New)**: Edit existing room details (`Oda Numarası`, `Tip`, and `Gecelik Fiyat`) via an interactive Pop-up Modal.
+  - **Delete**: Remove rooms from the system.
+- **Occupancy Protection (`durum === 1`) (New)**:
+  - Rooms currently reserved (`durum === 1`) are protected against accidental updates or deletions.
+  - Action buttons (`Güncelle` and `Odayı Sil`) are automatically **disabled** and **faded** (`opacity: 0.45`, `pointer-events: none`).
 - **Reservation Oversight**: View all active and historical bookings complete with customer names, assigned rooms, stay dates, and total charges.
 - **Booking Cancellation**: Instantly cancel or remove customer reservations.
 - **Availability Monitoring**: Search and verify room availability directly from the admin workspace.
+- **Modern Pop-up UI & Error Handling (New)**:
+  - **Glassmorphism Backdrop Blur**: Pop-up dialogs with blurred backdrops (`backdrop-filter: blur(6px)`).
+  - **Smooth CSS Animations**: Entrance keyframe scaling and slide animations (`animate-popup`).
+  - **Custom Error Alert Modal**: Reusable pop-up dialog for friendly error notification displays.
 
 ---
 
@@ -77,6 +87,7 @@ erDiagram
         string Oda_Numarasi UK
         string Tip
         decimal Gecelik_Fiyat
+        int Durum "0: Empty, 1: Reserved"
     }
     RESERVATION {
         int ID PK
@@ -126,6 +137,7 @@ CREATE TABLE reservation (
 | `GET` | `/api/rooms` | Fetch list of all rooms | - |
 | `GET` | `/api/rooms/available` | Get available rooms for a given date range | `checkIn` (Date), `checkOut` (Date) |
 | `POST` | `/api/rooms` | Create a new room | `{ oda_Numarasi, tip, gecelik_Fiyat }` |
+| `PUT` | `/api/rooms/{id}` | Update room details | `{ oda_Numarasi, tip, gecelik_Fiyat, durum }` |
 | `DELETE` | `/api/rooms/{id}` | Remove a room by ID | Path variable `id` |
 
 ### 📅 Reservations (`/api/reservation`)
@@ -155,10 +167,10 @@ Hotel_Management_System/
 │
 ├── Hotel_Management_Frontend/             # Angular 21 Single-Page Application
 │   └── src/app/
-│       ├── components/                    # Reusable UI Components
-│       ├── models/                        # TypeScript Interfaces & Models
+│       ├── components/                    # Reusable UI Components (Header, etc.)
+│       ├── models/                        # TypeScript Interfaces (Room with durum property, Reservation)
 │       ├── pages/                         # Main Views
-│       │   ├── admin/                     # Admin Management Dashboard
+│       │   ├── admin/                     # Admin Management Dashboard (with Update Modal & Error Alert)
 │       │   └── customer/                  # Guest Reservation Portal
 │       ├── services/                      # API Client Service (HttpClient integration)
 │       ├── app.routes.ts                  # Angular Application Routing Configuration
