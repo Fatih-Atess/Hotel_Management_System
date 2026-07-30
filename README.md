@@ -121,8 +121,6 @@ CREATE TABLE reservation (
   Cikis_Tarihi DATE NOT NULL,
   Toplam_Ucret DECIMAL(10,2) NOT NULL,
   FOREIGN KEY (Oda_ID) REFERENCES room(ID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
 );
 ```
 
