@@ -14,7 +14,7 @@
       <i class="fa-solid fa-calendar-days"></i>
       <h3>Oda Arama ve Rezervasyon</h3>
     </div>
-    
+
     <div class="filter-grid">
       <div class="form-group">
         <label><i class="fa-solid fa-plane-arrival"></i> Giriş Tarihi (Check-in)</label>
@@ -36,95 +36,117 @@
 
   <!-- Available Rooms Section -->
   @if (availableRooms.length > 0) {
-    <div class="rooms-section card">
-      <div class="section-header">
-        <div class="section-title">
-          <i class="fa-solid fa-door-open"></i>
-          <h3>Müsait Odalar</h3>
-          <span class="badge-count">{{ availableRooms.length }} Oda Bulundu</span>
-        </div>
+  <div class="rooms-section card">
+    <div class="section-header">
+      <div class="section-title">
+        <i class="fa-solid fa-door-open"></i>
+        <h3>Müsait Odalar</h3>
+        <span class="badge-count">{{ availableRooms.length }} Oda Bulundu</span>
       </div>
+    </div>
 
-      <div class="booking-customer-box">
-        <div class="form-group">
-          <label><i class="fa-solid fa-user"></i> Rezervasyon Sahibi Ad Soyad:</label>
-          <div class="input-with-icon">
-            <i class="fa-solid fa-id-card"></i>
-            <input type="text" [(ngModel)]="customerName" placeholder="Rezervasyon yapacak kişinin adı ve soyadı">
-          </div>
-        </div>
-      </div>
-
-      <!-- Modern Room Grid Cards -->
-      <div class="room-grid">
-        @for (room of availableRooms; track room.id) {
-          <div class="room-card">
-            <div class="room-card-header">
-              <div class="room-number">
-                <i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}
-              </div>
-              <span class="room-type-badge">{{ room.tip }}</span>
-            </div>
-            
-            <div class="room-amenities">
-              <span><i class="fa-solid fa-wifi"></i> Ücretsiz Wi-Fi</span>
-              <span><i class="fa-solid fa-snowflake"></i> Klima</span>
-              <span><i class="fa-solid fa-tv"></i> Smart TV</span>
-              <span><i class="fa-solid fa-mug-hot"></i> Kahvaltı</span>
-            </div>
-
-            <div class="room-card-footer">
-              <div class="room-price-tag">
-                <span class="price-amount">{{ room.gecelik_Fiyat }} TL</span>
-                <span class="price-period">/ Gecelik</span>
-              </div>
-
-              <button class="btn-success btn-book" (click)="bookRoom(room)">
-                <i class="fa-solid fa-check-circle"></i> Rezerve Et
-              </button>
-            </div>
-          </div>
-        }
-      </div>
-
-      <!-- Detailed Table View -->
-      <div class="table-container">
-        <div class="table-responsive">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th><i class="fa-solid fa-hashtag"></i> Oda Numarası</th>
-                <th><i class="fa-solid fa-bed"></i> Oda Tipi</th>
-                <th><i class="fa-solid fa-tag"></i> Gecelik Fiyat</th>
-                <th><i class="fa-solid fa-gear"></i> İşlem</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (room of availableRooms; track room.id) {
-                <tr>
-                  <td class="font-weight-bold">Oda {{ room.oda_Numarasi }}</td>
-                  <td><span class="badge-subtle">{{ room.tip }}</span></td>
-                  <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
-                  <td>
-                    <button class="btn-success btn-sm" (click)="bookRoom(room)">
-                      <i class="fa-solid fa-check"></i> Rezerve Et
-                    </button>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
+    <div class="booking-customer-box">
+      <div class="form-group">
+        <label><i class="fa-solid fa-user"></i> Rezervasyon Sahibi Ad Soyad:</label>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-id-card"></i>
+          <input type="text" [(ngModel)]="customerName" placeholder="Rezervasyon yapacak kişinin adı ve soyadı">
         </div>
       </div>
     </div>
+
+    <!-- Modern Room Grid Cards -->
+    <div class="room-grid">
+      @for (room of availableRooms; track room.id) {
+      <div class="room-card">
+        <div class="room-card-header">
+          <div class="room-number">
+            <i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}
+          </div>
+          <span class="room-type-badge">{{ room.tip }}</span>
+        </div>
+
+        <div class="room-amenities">
+          <span><i class="fa-solid fa-wifi"></i> Ücretsiz Wi-Fi</span>
+          <span><i class="fa-solid fa-snowflake"></i> Klima</span>
+          <span><i class="fa-solid fa-tv"></i> Smart TV</span>
+          <span><i class="fa-solid fa-mug-hot"></i> Kahvaltı</span>
+        </div>
+
+        <div class="room-card-footer">
+          <div class="room-price-tag">
+            <span class="price-amount">{{ room.gecelik_Fiyat }} TL</span>
+            <span class="price-period">/ Gecelik</span>
+          </div>
+
+          <button class="btn-success btn-book" (click)="bookRoom(room)">
+            <i class="fa-solid fa-check-circle"></i> Rezerve Et
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Detailed Table View -->
+    <div class="table-container">
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th><i class="fa-solid fa-hashtag"></i> Oda Numarası</th>
+              <th><i class="fa-solid fa-bed"></i> Oda Tipi</th>
+              <th><i class="fa-solid fa-tag"></i> Gecelik Fiyat</th>
+              <th><i class="fa-solid fa-gear"></i> İşlem</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (room of availableRooms; track room.id) {
+            <tr>
+              <td class="font-weight-bold">Oda {{ room.oda_Numarasi }}</td>
+              <td><span class="badge-subtle">{{ room.tip }}</span></td>
+              <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
+              <td>
+                <button class="btn-success btn-sm" (click)="bookRoom(room)">
+                  <i class="fa-solid fa-check"></i> Rezerve Et
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
   } @else if (checkinDate && checkoutDate) {
-    <div class="empty-state card">
-      <div class="empty-icon">
-        <i class="fa-solid fa-calendar-xmark"></i>
-      </div>
-      <h3>Müsait Oda Bulunamadı</h3>
-      <p>Seçtiğiniz tarihler arasında boş oda bulunmamaktadır. Lütfen farklı bir tarih aralığı deneyiniz.</p>
+  <div class="empty-state card">
+    <div class="empty-icon">
+      <i class="fa-solid fa-calendar-xmark"></i>
     </div>
+    <h3>Müsait Oda Bulunamadı</h3>
+    <p>Seçtiğiniz tarihler arasında boş oda bulunmamaktadır. Lütfen farklı bir tarih aralığı deneyiniz.</p>
+  </div>
   }
 </div>
 
+<!-- Error Modal Pop-up -->
+@if (errorMessage) {
+<div
+  style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+
+  <div
+    style="background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); max-width: 400px; width: 90%; text-align: center; border-top: 5px solid #e74c3c;">
+
+    <h3 style="color: #c0392b; margin-top: 0;">Eylem Başarısız</h3>
+
+    <p style="color: #333; margin-bottom: 25px; line-height: 1.5;">
+      {{ errorMessage }}
+    </p>
+
+    <button (click)="errorMessage = ''"
+      style="padding: 10px 25px; background-color: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold;">
+      Kapat
+    </button>
+
+  </div>
+</div>
+}

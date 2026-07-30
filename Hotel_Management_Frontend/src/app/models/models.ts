@@ -3,9 +3,11 @@ export interface Room {
     oda_Numarasi: string;
     tip: string;
     gecelik_Fiyat: number;
+    durum: number;
 }
 
-export interface Reservation{
+
+export interface Reservation {
     id?: number;
     oda_ID: number;
     musteri_Ad_Soyad: string;
@@ -14,7 +16,7 @@ export interface Reservation{
     toplam_Ucret?: number;
 }
 
-export interface ReservationRoom{
+export interface ReservationRoom {
     id?: number;
     oda_ID: number;
     oda_Numarasi: string;

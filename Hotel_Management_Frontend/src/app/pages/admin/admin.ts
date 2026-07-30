@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../services/api';
@@ -17,16 +17,32 @@ export class Admin implements OnInit {
   allReservations: ReservationRoom[] = [];
   availableRooms: Room[] = [];
 
-  newRoom: Room = { id: 0, oda_Numarasi: '', tip: '', gecelik_Fiyat: 0};
+  newRoom: Room = { id: 0, oda_Numarasi: '', tip: '', gecelik_Fiyat: 0, durum: 0 };
 
   checkinDate: string = '';
   checkoutDate: string = '';
 
   minDateString: string = '';
 
-  constructor(private apiService: Api, private cdr: ChangeDetectorRef){}
+  isUpdateModalOpen: boolean = false;
+  selectedRoomToUpdate: Room | null = null;
 
-  ngOnInit(){
+  errorMessage: string = '';
+
+  openUpdateModal(room: Room) {
+    if (room.durum === 1) return;
+    this.selectedRoomToUpdate = { ...room };
+    this.isUpdateModalOpen = true;
+  }
+
+  closeUpdateModal() {
+    this.isUpdateModalOpen = false;
+    this.selectedRoomToUpdate = null;
+  }
+
+  constructor(private apiService: Api, private cdr: ChangeDetectorRef) { }
+
+  ngOnInit() {
     this.loadAllRooms();
     this.loadAllReservations();
     const today = new Date();
@@ -34,28 +50,34 @@ export class Admin implements OnInit {
     console.log('Admin paneli yüklendi');
   }
 
-  loadAllRooms(){
+  loadAllRooms() {
     this.apiService.getAllRooms().subscribe({
       next: (data) => {
         this.allRooms = data;
         this.cdr.detectChanges();
       },
-      error: (err) => console.error('Odalar yüklenirken hata:', err)
+      error: (err) => {
+        console.error('Odalar yüklenirken hata:', err);
+        this.errorMessage = err.error || err.message || 'Hata: Odalar yüklenemedi.';
+      }
     });
   }
 
-  loadAllReservations(){
+  loadAllReservations() {
     this.apiService.getAllReservationsWithRooms().subscribe({
       next: (data) => {
         this.allReservations = data
         this.cdr.detectChanges();
       },
-      error: (err) => console.error('Rezervasyonlar yüklenirken hata:', err)
+      error: (err) => {
+        console.error('Rezervasyonlar yüklenirken hata:', err);
+        this.errorMessage = err.error || err.message || 'Hata: Rezervasyonlar yüklenemedi.';
+      }
     });
   }
 
   searchAvailableRooms() {
-    if(!this.checkinDate || !this.checkoutDate){
+    if (!this.checkinDate || !this.checkoutDate) {
       alert('Lütfen giriş ve çıkış tarihlerini seçiniz.');
       return;
     }
@@ -64,25 +86,28 @@ export class Admin implements OnInit {
     const checkout = new Date(this.checkoutDate);
     const today = new Date(this.minDateString);
 
-    if(checkin < today || checkout < today){
+    if (checkin < today || checkout < today) {
       alert('Hata: Geçmiş bir tarihe rezervasyon yapılamaz.');
       this.availableRooms = [];
       return;
     }
 
-    if(checkout <= checkin){
+    if (checkout <= checkin) {
       alert('Hata: Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
       this.availableRooms = [];
       return;
     }
 
     this.apiService.getAvailableRooms(this.checkinDate, this.checkoutDate)
-    .subscribe({
-      next: (rooms) => {
-        this.availableRooms = rooms;
-      },
-      error: (err) => console.error('Oda araması sırasında hata oluştu:', err)
-    });
+      .subscribe({
+        next: (rooms) => {
+          this.availableRooms = rooms;
+        },
+        error: (err) => {
+          console.error('Oda araması sırasında hata oluştu:', err);
+          this.errorMessage = err.error || err.message || 'Hata: Oda araması başarısız.';
+        }
+      });
   }
 
   addNewRoom() {
@@ -93,13 +118,13 @@ export class Admin implements OnInit {
 
     this.apiService.addRoom(this.newRoom).subscribe({
       next: (response) => {
-        this.loadAllRooms(); 
-        this.newRoom = { id: 0, oda_Numarasi: '', tip: '', gecelik_Fiyat: 0 };
+        this.loadAllRooms();
+        this.newRoom = { id: 0, oda_Numarasi: '', tip: '', gecelik_Fiyat: 0, durum: 0 };
         alert('Oda sisteme başarıyla eklendi.');
       },
       error: (err) => {
-        console.error('Oda eklenirken hata:', err)
-      alert('Oda eklenemedi. Lütfen bağlantınızı kontrol edin.');
+        console.error('Oda eklenirken hata:', err);
+        this.errorMessage = err.error || err.message || 'Hata: Oda eklenemedi.';
       }
     });
   }
@@ -113,7 +138,7 @@ export class Admin implements OnInit {
           this.loadAllReservations();
         },
         error: (err) => {
-          alert('Hata: Bu odaya ait aktif bir rezervasyon bulunuyor olabilir.');
+          this.errorMessage = err.error || err.message || 'Hata: Oda silinemedi. Bu odaya ait aktif bir rezervasyon bulunuyor olabilir.';
           console.error(err);
         }
       });
@@ -128,9 +153,33 @@ export class Admin implements OnInit {
           alert('Rezervasyon başarıyla iptal edildi.');
           this.loadAllReservations();
         },
-        error: (err) => console.error('Rezervasyon iptal edilirken hata:', err)
+        error: (err) => {
+          this.errorMessage = err.error || err.message || 'Hata: Rezervasyon iptal edilemedi.';
+          console.error(err);
+        }
+
       });
     }
+  }
+
+  updateRoom() {
+    if (!this.selectedRoomToUpdate) return;
+
+    if (!this.selectedRoomToUpdate.oda_Numarasi || !this.selectedRoomToUpdate.tip || this.selectedRoomToUpdate.gecelik_Fiyat <= 0) {
+      alert('Lütfen geçerli oda bilgileri giriniz.');
+      return;
+    }
+    this.apiService.updateRoom(this.selectedRoomToUpdate.id, this.selectedRoomToUpdate).subscribe({
+      next: () => {
+        alert('Oda başarıyla güncellendi.');
+        this.loadAllRooms();
+        this.closeUpdateModal();
+      },
+      error: (err) => {
+        this.errorMessage = err.error || err.message || 'Güncelleme başarısız. Lütfen verilerinizi kontrol ediniz.';
+        console.error(err);
+      }
+    })
   }
 
 }

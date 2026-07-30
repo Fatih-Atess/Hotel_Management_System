@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Api } from '../../services/api';
@@ -11,7 +11,7 @@ import { Room, Reservation } from '../../models/models';
   templateUrl: './customer.html',
   styleUrl: './customer.css',
 })
-export class Customer implements OnInit{
+export class Customer implements OnInit {
   checkinDate: string = '';
   checkoutDate: string = '';
   customerName: string = '';
@@ -19,15 +19,17 @@ export class Customer implements OnInit{
 
   minDateString: string = '';
 
-  constructor(private apiService: Api){}
+  errorMessage: string = '';
 
-  ngOnInit(){
+  constructor(private apiService: Api) { }
+
+  ngOnInit() {
     const today = new Date();
     this.minDateString = today.toISOString().split('T')[0];
   }
 
   searchAvailableRooms() {
-    if(!this.checkinDate || !this.checkoutDate){
+    if (!this.checkinDate || !this.checkoutDate) {
       alert('Lütfen giriş ve çıkış tarihlerini seçiniz.');
       return;
     }
@@ -36,29 +38,32 @@ export class Customer implements OnInit{
     const checkout = new Date(this.checkoutDate);
     const today = new Date(this.minDateString);
 
-    if(checkin < today || checkout < today){
+    if (checkin < today || checkout < today) {
       alert('Hata: Geçmiş bir tarihe rezervasyon yapılamaz.');
       this.availableRooms = [];
       return;
     }
 
-    if(checkout <= checkin){
+    if (checkout <= checkin) {
       alert('Hata: Çıkış tarihi, giriş tarihinden sonra olmalıdır.');
       this.availableRooms = [];
       return;
     }
 
     this.apiService.getAvailableRooms(this.checkinDate, this.checkoutDate)
-    .subscribe({
-      next: (rooms) => {
-        this.availableRooms = rooms;
-      },
-      error: (err) => console.error('Oda araması sırasında hata oluştu:', err)
-    });
+      .subscribe({
+        next: (rooms) => {
+          this.availableRooms = rooms;
+        },
+        error: (err) => {
+          console.error('Oda araması sırasında hata oluştu:', err);
+          this.errorMessage = err.error || err.message || 'Hata: Oda araması başarısız.';
+        }
+      });
   }
 
-  bookRoom(room: Room){
-    if(!this.customerName){
+  bookRoom(room: Room) {
+    if (!this.customerName) {
       alert('Lütfen rezervasyon için adınızı ve soyadınızı giriniz.');
       return;
     }
@@ -71,17 +76,17 @@ export class Customer implements OnInit{
     };
 
     this.apiService.createReservation(newReservation)
-    .subscribe({
-      next: (res) => {
-        this.customerName = '';
-        this.searchAvailableRooms();
-        alert('Rezervasyon başarıyla oluşturuldu!');
-      },
-      error: (err) => {
-        alert('Rezervasyon yapılamadı.');
-        console.error(err);
-      }
-    })
+      .subscribe({
+        next: (res) => {
+          this.customerName = '';
+          this.searchAvailableRooms();
+          alert('Rezervasyon başarıyla oluşturuldu!');
+        },
+        error: (err) => {
+          this.errorMessage = err.error || err.message || 'Hata: Rezervasyon yapılamadı.';
+          console.error(err);
+        }
+      })
   }
 
 

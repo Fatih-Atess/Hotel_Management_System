@@ -1,12 +1,10 @@
 <div class="admin-container">
-  <!-- Admin Dashboard Header -->
   <div class="admin-header">
     <div class="header-info">
       <h1 class="admin-title font-serif"><i class="fa-solid fa-sliders"></i> Yönetici Kontrol Paneli</h1>
       <p class="admin-subtitle">Otel odalarını yönetin, rezervasyonları takip edin ve müsaitlik durumunu sorgulayın.</p>
     </div>
 
-    <!-- Quick Stats Cards -->
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-icon icon-gold">
@@ -36,7 +34,7 @@
       <i class="fa-solid fa-circle-plus"></i>
       <h3>Yeni Oda Ekle</h3>
     </div>
-    
+
     <div class="form-grid">
       <div class="form-group">
         <label><i class="fa-solid fa-hashtag"></i> Oda Numarası</label>
@@ -90,16 +88,21 @@
         </thead>
         <tbody>
           @for (room of allRooms; track room.id) {
-            <tr>
-              <td><span class="room-code-badge"><i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}</span></td>
-              <td><span class="type-pill">{{ room.tip }}</span></td>
-              <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
-              <td>
-                <button class="btn-danger btn-sm" (click)="removeRoom(room.id)">
-                  <i class="fa-solid fa-trash-can"></i> Odayı Sil
-                </button>
-              </td>
-            </tr>
+          <tr>
+            <td><span class="room-code-badge"><i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}</span></td>
+            <td><span class="type-pill">{{ room.tip }}</span></td>
+            <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
+            <td>
+              <button class="btn-warning btn-sm" [disabled]="room.durum === 1" [class.faded]="room.durum === 1"
+                (click)="openUpdateModal(room)">
+                <i class="fa-solid fa-pen-to-square"></i> Güncelle
+              </button>
+              <button class="btn-danger btn-sm" [disabled]="room.durum === 1" [class.faded]="room.durum === 1"
+                (click)="removeRoom(room.id)">
+                <i class="fa-solid fa-trash-can"></i> Odayı Sil
+              </button>
+            </td>
+          </tr>
           }
         </tbody>
       </table>
@@ -131,21 +134,22 @@
         </thead>
         <tbody>
           @for (res of allReservations; track res.id) {
-            <tr>
-              <td class="text-muted">#{{ res.id }}</td>
-              <td class="font-weight-bold"><i class="fa-solid fa-user-check text-gold"></i> {{ res.musteri_Ad_Soyad }}</td>
-              <td>#{{ res.oda_ID }}</td>
-              <td><span class="badge-subtle">Oda {{ res.oda_Numarasi }}</span></td>
-              <td><span class="type-pill">{{ res.tip }}</span></td>
-              <td><i class="fa-regular fa-calendar-check text-green"></i> {{ res.giris_Tarihi | date:'dd.MM.yyyy' }}</td>
-              <td><i class="fa-regular fa-calendar-xmark text-red"></i> {{ res.cikis_Tarihi | date:'dd.MM.yyyy' }}</td>
-              <td class="price-cell">{{ res.toplam_Ucret }} TL</td>
-              <td>
-                <button class="btn-danger btn-sm" (click)="removeReservation(res.id)">
-                  <i class="fa-solid fa-xmark"></i> İptal Et
-                </button>
-              </td>
-            </tr>
+          <tr>
+            <td class="text-muted">#{{ res.id }}</td>
+            <td class="font-weight-bold"><i class="fa-solid fa-user-check text-gold"></i> {{ res.musteri_Ad_Soyad }}
+            </td>
+            <td>#{{ res.oda_ID }}</td>
+            <td><span class="badge-subtle">Oda {{ res.oda_Numarasi }}</span></td>
+            <td><span class="type-pill">{{ res.tip }}</span></td>
+            <td><i class="fa-regular fa-calendar-check text-green"></i> {{ res.giris_Tarihi | date:'dd.MM.yyyy' }}</td>
+            <td><i class="fa-regular fa-calendar-xmark text-red"></i> {{ res.cikis_Tarihi | date:'dd.MM.yyyy' }}</td>
+            <td class="price-cell">{{ res.toplam_Ucret }} TL</td>
+            <td>
+              <button class="btn-danger btn-sm" (click)="removeReservation(res.id)">
+                <i class="fa-solid fa-xmark"></i> İptal Et
+              </button>
+            </td>
+          </tr>
           }
         </tbody>
       </table>
@@ -178,29 +182,101 @@
     </div>
 
     @if (availableRooms.length > 0) {
-      <div class="table-responsive margin-top-md">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Oda ID</th>
-              <th>Oda Numarası</th>
-              <th>Oda Tipi</th>
-              <th>Gecelik Fiyat</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (room of availableRooms; track room.id) {
-              <tr>
-                <td class="text-muted">#{{ room.id }}</td>
-                <td><span class="room-code-badge"><i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}</span></td>
-                <td><span class="type-pill">{{ room.tip }}</span></td>
-                <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+    <div class="table-responsive margin-top-md">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Oda ID</th>
+            <th>Oda Numarası</th>
+            <th>Oda Tipi</th>
+            <th>Gecelik Fiyat</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (room of availableRooms; track room.id) {
+          <tr>
+            <td class="text-muted">#{{ room.id }}</td>
+            <td><span class="room-code-badge"><i class="fa-solid fa-key"></i> Oda {{ room.oda_Numarasi }}</span></td>
+            <td><span class="type-pill">{{ room.tip }}</span></td>
+            <td class="price-cell">{{ room.gecelik_Fiyat }} TL</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
     }
   </div>
 </div>
 
+@if (isUpdateModalOpen && selectedRoomToUpdate) {
+<div class="modal-backdrop" (click)="closeUpdateModal()">
+  <div class="modal-popup animate-popup" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="header-title">
+        <i class="fa-solid fa-pen-to-square icon-gold"></i>
+        <h3>Oda Bilgilerini Güncelle</h3>
+      </div>
+      <button class="modal-close-btn" (click)="closeUpdateModal()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-group">
+        <label><i class="fa-solid fa-hashtag"></i> Oda Numarası</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-key"></i>
+          <input type="text" [(ngModel)]="selectedRoomToUpdate.oda_Numarasi" placeholder="Örn: 101">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-bed"></i> Oda Tipi</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-star"></i>
+          <input type="text" [(ngModel)]="selectedRoomToUpdate.tip" placeholder="Örn: Standart / Suite">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fa-solid fa-turkish-lira-sign"></i> Gecelik Fiyat (TL)</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-tag"></i>
+          <input type="number" [(ngModel)]="selectedRoomToUpdate.gecelik_Fiyat" placeholder="Örn: 1500">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" (click)="closeUpdateModal()">
+        <i class="fa-solid fa-xmark"></i> İptal
+      </button>
+      <button type="button" class="btn-success" (click)="updateRoom()">
+        <i class="fa-solid fa-floppy-disk"></i> Güncelle
+      </button>
+    </div>
+  </div>
+</div>
+}
+
+<!-- Hata Pop-up Modal -->
+@if (errorMessage) {
+<div class="modal-backdrop" (click)="errorMessage = ''">
+  <div class="modal-popup modal-error animate-popup" (click)="$event.stopPropagation()">
+    <div class="error-badge-wrapper">
+      <div class="error-badge-icon">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+    </div>
+
+    <div class="modal-body text-center">
+      <h3 class="error-title">İşlem Başarısız</h3>
+      <p class="error-text">{{ errorMessage }}</p>
+    </div>
+
+    <div class="modal-footer justify-center">
+      <button type="button" class="btn-danger btn-block-sm" (click)="errorMessage = ''">
+        <i class="fa-solid fa-check"></i> Anladım
+      </button>
+    </div>
+  </div>
+</div>
+}
