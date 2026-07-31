@@ -90,20 +90,36 @@ namespace Hotel_Management_Api.Repositories
             using (var conn = new MySqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
+                int Room_ID = await GetRoomIdFromReservation(id);
 
                 string query = "DELETE FROM reservation WHERE ID = @ID";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("ID", id);
+                    cmd.Parameters.AddWithValue("@ID", id);
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
                     if (rowsAffected > 0)
                     {
-                        await _roomRepository.UpdateStatus(id, 0);
-                        return true;
+                       return await _roomRepository.UpdateStatus(Room_ID, 0);
                     }
                 }
                 return false;
+            }
+        }
+
+        public async Task<int> GetRoomIdFromReservation(int id)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+
+                string query = "SELECT Oda_ID FROM reservation WHERE ID = @ID";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    int Room_ID = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                    return Room_ID;
+                }
             }
         }
 

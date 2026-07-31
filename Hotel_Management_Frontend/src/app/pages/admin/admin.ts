@@ -152,6 +152,7 @@ export class Admin implements OnInit {
         next: () => {
           alert('Rezervasyon başarıyla iptal edildi.');
           this.loadAllReservations();
+          this.loadAllRooms();
         },
         error: (err) => {
           this.errorMessage = err.error || err.message || 'Hata: Rezervasyon iptal edilemedi.';
