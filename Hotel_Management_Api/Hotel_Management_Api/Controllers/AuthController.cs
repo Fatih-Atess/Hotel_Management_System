@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Hotel_Management_Api.DTOs;
 
 
 namespace Hotel_Management_Api.Controllers
@@ -22,7 +23,7 @@ namespace Hotel_Management_Api.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
             string token = await _authService.AuthenticateAsync(request.Username, request.Password);
 
