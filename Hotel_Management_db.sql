@@ -22,8 +22,11 @@ CREATE TABLE user(
 ID INT AUTO_INCREMENT PRIMARY KEY,
 Kullanici_Adi VARCHAR(50) NOT NULL UNIQUE,
 Sifre VARCHAR(255) NOT NULL,
-Rol VARCHAR(20) NOT NULL
+Rol VARCHAR(20) DEFAULT 'customer'
 );
+
+INSERT INTO user(Kullanici_Adi, Sifre, Rol) VALUES('fatih', '123', 'admin');
+INSERT INTO user(Kullanici_Adi, Sifre, Rol) VALUES('mehmet', '123', 'customer');
 
 
 

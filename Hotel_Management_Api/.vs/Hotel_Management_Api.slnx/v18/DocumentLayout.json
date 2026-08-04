@@ -3,8 +3,56 @@
   "WorkspaceRootPath": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\repositories\\roomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\repositories\\roomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\repositories\\reservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\repositories\\reservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\dtos\\roomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\dtos\\roomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,48 +75,16 @@
       "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\repositories\\reservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\repositories\\reservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\repositories\\roomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\repositories\\roomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\ireservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\ireservationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\controllers\\roomscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\interfaces\\iroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\interfaces\\iroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\dtos\\roomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|solutionrelative:hotel_management_api\\dtos\\roomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{24EE42DA-8596-FE1E-0E7B-7BABB1367993}|Hotel_Management_Api\\Hotel_Management_Api.csproj|c:\\staj_projeleri\\hotel_management_system\\hotel_management_api\\hotel_management_api\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,24 +97,141 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 982,
-          "SelectedChildIndex": 6,
+          "DockedWidth": 1410,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T08:41:08.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoomRepository.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\RoomRepository.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Repositories\\RoomRepository.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\RoomRepository.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Repositories\\RoomRepository.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAgwG4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T13:18:22.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Program.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Program.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Program.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Program.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAD4AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T11:57:07.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "Room.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\Room.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Models\\Room.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\Room.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Models\\Room.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T12:12:19.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ReservationRepository.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwFgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T05:50:12.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RoomDto.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\RoomDto.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\DTOs\\RoomDto.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\RoomDto.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\DTOs\\RoomDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T12:39:56.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "IAuthRepository.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IAuthRepository.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Interfaces\\IAuthRepository.cs",
               "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IAuthRepository.cs",
               "RelativeToolTip": "Hotel_Management_Api\\Interfaces\\IAuthRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T12:42:07.367Z"
+              "WhenOpened": "2026-07-31T12:42:07.367Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Models\\User.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\User.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T12:51:29.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Interfaces\\IAuthService.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T13:15:28.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "LoginRequestDto.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-31T12:03:08.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Services\\AuthService.cs",
@@ -111,31 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoginRequestDto.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\DTOs\\LoginRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T12:03:08.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ReservationRepository.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Repositories\\ReservationRepository.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAhwFgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-27T05:50:12.537Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Controllers\\AuthController.cs",
@@ -148,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 13,
               "Title": "AuthRepository.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\AuthRepository.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Repositories\\AuthRepository.cs",
@@ -161,32 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Program.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Program.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Program.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Program.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-24T11:57:07.667Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RoomRepository.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\RoomRepository.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Repositories\\RoomRepository.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\RoomRepository.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Repositories\\RoomRepository.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAYwKUAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-24T13:18:22.613Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 17,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\appsettings.json",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\appsettings.json",
@@ -198,31 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Interfaces\\IAuthService.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IAuthService.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Interfaces\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T13:15:28.864Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Models\\User.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\User.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-31T12:51:29.951Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 18,
               "Title": "IReservationRepository.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IReservationRepository.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Interfaces\\IReservationRepository.cs",
@@ -234,19 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RoomsController.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\RoomsController.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Controllers\\RoomsController.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\RoomsController.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Controllers\\RoomsController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAgwGYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-27T05:52:13.151Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "IRoomRepository.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IRoomRepository.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Interfaces\\IRoomRepository.cs",
@@ -258,19 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "RoomDto.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\RoomDto.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\DTOs\\RoomDto.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\RoomDto.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\DTOs\\RoomDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-24T12:39:56.959Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Controllers\\ReservationController.cs",
@@ -282,19 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Room.cs",
-              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\Room.cs",
-              "RelativeDocumentMoniker": "Hotel_Management_Api\\Models\\Room.cs",
-              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\Room.cs",
-              "RelativeToolTip": "Hotel_Management_Api\\Models\\Room.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-24T12:12:19.841Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "Hotel_Management_Api\\Models\\Reservation.cs",
@@ -303,6 +327,64 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-24T12:17:08.529Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 554,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RoomsController.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\RoomsController.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Controllers\\RoomsController.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Controllers\\RoomsController.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Controllers\\RoomsController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAA3wEEAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-27T05:52:13.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T08:10:19.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\Interfaces\\IUserRepository.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\Interfaces\\IUserRepository.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\Interfaces\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T08:25:45.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\UserDto.cs",
+              "RelativeDocumentMoniker": "Hotel_Management_Api\\DTOs\\UserDto.cs",
+              "ToolTip": "C:\\staj_projeleri\\Hotel_Management_System\\Hotel_Management_Api\\Hotel_Management_Api\\DTOs\\UserDto.cs",
+              "RelativeToolTip": "Hotel_Management_Api\\DTOs\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T08:24:38.873Z",
+              "EditorCaption": ""
             }
           ]
         }
