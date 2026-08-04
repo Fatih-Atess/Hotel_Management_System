@@ -1,29 +1,72 @@
-<header class="login-header">
-    <h1>Sisteme Giriş</h1>
-    <p>Lütfen yönetici bilgilerinizi giriniz</p>
-</header>
+<div class="login-wrapper">
+  <!-- Dynamic Ambient Glow Shapes -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
 
-<div class="login-container">
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <div class="login-card">
+    <div class="brand-header">
+      <div class="brand-badge">
+        <i class="fa-solid fa-hotel"></i>
+      </div>
+      <h2>Grand Luxury</h2>
+      <p class="subtitle">Otel Yönetim Sistemi Portalına Hoş Geldiniz</p>
+    </div>
 
-        <div class="form-group">
-            <label for="username">Kullanıcı Adı</label>
-            <input type="text" id="username" name="username" [(ngModel)]="loginData.username" required>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+
+      <div class="form-group">
+        <label for="username">Kullanıcı Adı</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-user input-icon"></i>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            [(ngModel)]="loginData.username" 
+            placeholder="Kullanıcı adınızı girin"
+            required
+            autocomplete="username">
         </div>
+      </div>
 
-        <div class="form-group">
-            <label for="password">Şifre</label>
-            <input type="password" id="password" name="password" [(ngModel)]="loginData.password" required>
+      <div class="form-group">
+        <label for="password">Şifre</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password" 
+            name="password" 
+            [(ngModel)]="loginData.password" 
+            placeholder="Şifrenizi girin"
+            required
+            autocomplete="current-password">
+          <button 
+            type="button" 
+            class="password-toggle-btn" 
+            (click)="togglePasswordVisibility()"
+            title="Şifreyi Göster/Gizle">
+            <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
         </div>
+      </div>
 
-        @if(errorMessage){
+      @if (errorMessage) {
         <div class="error-banner">
-            {{ errorMessage }}
+          <i class="fa-solid fa-circle-exclamation error-icon"></i>
+          <span>{{ errorMessage }}</span>
         </div>
-        }
+      }
 
-        <button type="submit" class="btn-login" [disabled]="!loginForm.valid">
-            Giriş Yap
-        </button>
+      <button type="submit" class="btn-login" [disabled]="!loginForm.valid || isLoading">
+        @if (isLoading) {
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          <span>Giriş Yapılıyor...</span>
+        } @else {
+          <span>Giriş Yap</span>
+          <i class="fa-solid fa-arrow-right icon-arrow"></i>
+        }
+      </button>
     </form>
+  </div>
 </div>
