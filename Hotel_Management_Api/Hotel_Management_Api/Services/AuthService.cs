@@ -1,10 +1,9 @@
-﻿using Hotel_Management_Api.Interfaces;
+using Hotel_Management_Api.DTOs;
+using Hotel_Management_Api.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
-
 
 namespace Hotel_Management_Api.Services
 {
@@ -20,7 +19,7 @@ namespace Hotel_Management_Api.Services
             _configuration = configuration;
         }
 
-        public async Task<string> AuthenticateAsync(string username, string password)
+        public async Task<LoginResponseDto> AuthenticateAsync(string username, string password)
         {
             string role = await _authRepository.GetRoleAsync(username, password);
 
@@ -29,7 +28,12 @@ namespace Hotel_Management_Api.Services
                 return null;
             }
 
-            return GenerateJwtToken(username, role);
+            string token = GenerateJwtToken(username, role);
+            return new LoginResponseDto
+            {
+                Token = token,
+                Role = role
+            };
         }
         private string GenerateJwtToken(string username, string role)
         {

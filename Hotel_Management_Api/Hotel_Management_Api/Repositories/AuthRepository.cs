@@ -18,7 +18,7 @@ namespace Hotel_Management_Api.Repositories
             using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
-                string query = "SELECT Rol FROM Kullanicilar WHERE Kullanici_Adi = @Username AND Sifre = @Password";
+                string query = "SELECT Rol FROM user WHERE Kullanici_Adi = @Username AND Sifre = @Password";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {

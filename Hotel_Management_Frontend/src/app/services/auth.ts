@@ -17,20 +17,40 @@ export class Auth {
         if (response && response.token) {
           localStorage.setItem('jwt_token', response.token);
         }
+        if (response && response.role) {
+          localStorage.setItem('user_role', response.role);
+        }
       })
     );
   }
 
   logout(): void {
     localStorage.removeItem('jwt_token');
+    localStorage.removeItem('user_role');
   }
 
   getToken(): string | null {
     return localStorage.getItem('jwt_token');
   }
 
+  getRole(): string | null {
+    return localStorage.getItem('user_role');
+  }
+
   isLoggedIn(): boolean {
     return this.getToken() !== null;
+  }
+
+  isAdmin(): boolean {
+    const role = this.getRole();
+    return role ? role.toLowerCase() === 'admin' : false;
+  }
+
+  isCustomer(): boolean {
+    const role = this.getRole();
+    if (!role) return false;
+    const lower = role.toLowerCase();
+    return lower === 'customer';
   }
 
 }

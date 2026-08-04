@@ -29,8 +29,14 @@ export class Login {
     this.errorMessage = '';
 
     this.authService.login(this.loginData).subscribe({
-      next: () => {
-        this.router.navigate(['reservations']);
+      next: (res: any) => {
+        const role = (res?.role || this.authService.getRole() || '').toLowerCase();
+        if (role === 'admin') {
+          this.router.navigate(['/admin']);
+        }
+        else if (role === 'customer') {
+          this.router.navigate(['/customer']);
+        }
       },
       error: (err) => {
         console.error('Login error:', err);

@@ -1,4 +1,4 @@
-﻿using Hotel_Management_Api.Interfaces;
+using Hotel_Management_Api.Interfaces;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -25,14 +25,14 @@ namespace Hotel_Management_Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
-            string token = await _authService.AuthenticateAsync(request.Username, request.Password);
+            var response = await _authService.AuthenticateAsync(request.Username, request.Password);
 
-            if (token == null)
+            if (response == null)
             {
                 return Unauthorized(new { message = "Geçersiz kullanıcı adı veya şifre." });
             }
 
-            return Ok(new { token = token });
+            return Ok(response);
         }
     }
 }

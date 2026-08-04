@@ -9,17 +9,30 @@
         <span>Otel Yönetim Sistemi</span>
       </div>
     </div>
-    
+
+    @if (authService.isLoggedIn()) {
     <nav class="navigation-links">
+
+      @if (authService.isCustomer() || authService.isAdmin()) {
       <a routerLink="/customer" routerLinkActive="active-link">
         <i class="fa-solid fa-calendar-check"></i>
         <span>Müşteri Portalı</span>
       </a>
+      }
+
+      @if (authService.isAdmin()) {
       <a routerLink="/admin" routerLinkActive="active-link">
         <i class="fa-solid fa-user-shield"></i>
         <span>Admin Paneli</span>
       </a>
+      }
+
+      <button class="logout-btn" (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Çıkış Yap</span>
+      </button>
     </nav>
+    }
+
   </div>
 </header>
-
