@@ -13,10 +13,12 @@ namespace Hotel_Management_Api.Controllers
     public class ReservationController : ControllerBase
     {
         private readonly IReservationRepository _reservationRepository;
+        private readonly IUserRepository _userRepository;
 
-        public ReservationController(IReservationRepository reservationRepository)
+        public ReservationController(IReservationRepository reservationRepository, IUserRepository userRepository)
         {
             _reservationRepository = reservationRepository;
+            _userRepository = userRepository;
         }
 
         [HttpPost]
@@ -38,6 +40,10 @@ namespace Hotel_Management_Api.Controllers
             if(request.Oda_ID <= 0)
             {
                 return BadRequest("Lütfen geçerli bir oda id'si giriniz");
+            }
+            if (await _userRepository.DoesUserExistAsync(request.Musteri_Ad_Soyad) == false)
+            {
+                return NotFound("Sistemde bu isimle kayıtlı kullanıcı bulunamadı.");
             }
 
             bool isSuccess = await _reservationRepository.CreateReservationAsync(request);

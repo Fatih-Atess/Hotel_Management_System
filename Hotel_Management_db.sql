@@ -11,11 +11,12 @@ Durum INT DEFAULT 0
 CREATE TABLE reservation(
 ID INT AUTO_INCREMENT PRIMARY KEY,
 Oda_ID INT,
-Musteri_Ad_Soyad VARCHAR(100) NOT NULL,
+Musteri_Ad_Soyad VARCHAR(100),
 Giris_Tarihi DATE NOT NULL,
 Cikis_Tarihi DATE NOT NULL,
 Toplam_Ucret DECIMAL(10,2) NOT NULL,
-FOREIGN KEY (Oda_ID) REFERENCES room(ID)
+FOREIGN KEY (Oda_ID) REFERENCES room(ID),
+FOREIGN KEY (Musteri_Ad_Soyad) REFERENCES user(Kullanici_Adi)
 );
 
 CREATE TABLE user(
@@ -25,8 +26,6 @@ Sifre VARCHAR(255) NOT NULL,
 Rol VARCHAR(20) DEFAULT 'customer'
 );
 
-INSERT INTO user(Kullanici_Adi, Sifre, Rol) VALUES('fatih', '123', 'admin');
-INSERT INTO user(Kullanici_Adi, Sifre, Rol) VALUES('mehmet', '123', 'customer');
 
 
 

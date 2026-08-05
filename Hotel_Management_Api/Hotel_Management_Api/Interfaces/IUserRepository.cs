@@ -5,5 +5,6 @@ namespace Hotel_Management_Api.Interfaces
     public interface IUserRepository
     {
         Task<bool> AddUserAsync(UserDto user);
+        Task<bool> DoesUserExistAsync(string name);
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IAuthRepository
     {
-        Task<string> GetRoleAsync(string username, string password);
+        Task<(string Rol, string PasswordHash)?> GetUserCredentialsAsync(string username);
     }
 }
  

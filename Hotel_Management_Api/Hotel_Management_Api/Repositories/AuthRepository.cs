@@ -13,23 +13,25 @@ namespace Hotel_Management_Api.Repositories
          _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<string> GetRoleAsync(string username, string password)
+        public async Task<(string Rol, string PasswordHash)?> GetUserCredentialsAsync(string username)
         {
             using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
-                string query = "SELECT Rol FROM user WHERE Kullanici_Adi = @Username AND Sifre = @Password";
+                string query = "SELECT Rol, Sifre FROM user WHERE Kullanici_Adi = @Username";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", password);
 
                     using (var reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
                     {
                         if (await reader.ReadAsync())
                         {
-                            return reader.GetString("Rol");
+                             string rol = reader.GetString("Rol");
+                            string passwordHash = reader.GetString("Sifre");
+
+                            return (rol, passwordHash);
                         }
                     }
                 }

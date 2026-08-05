@@ -2,6 +2,7 @@ using Hotel_Management_Api.DTOs;
 using Hotel_Management_Api.Interfaces;
 using Hotel_Management_Api.Models;
 using MySql.Data.MySqlClient;
+using BCrypt.Net;
 
 
 namespace Hotel_Management_Api.Repositories
@@ -22,19 +23,12 @@ namespace Hotel_Management_Api.Repositories
             using (var connection = new MySqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                string doesUserExist = "SELECT COUNT(*) FROM user WHERE Kullanici_Adi = @Kullanici_Adi";
-
-
-                using (var command = new MySqlCommand(doesUserExist, connection))
+                if(await DoesUserExistAsync(user.Kullanici_Adi))
                 {
-                    command.Parameters.AddWithValue("@Kullanici_Adi", user.Kullanici_Adi);
-                    var count = Convert.ToInt32(await command.ExecuteScalarAsync());
-
-                    if (count > 0)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
+
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Sifre);
 
                 string sql = "INSERT INTO user (Kullanici_Adi, Sifre) VALUES (@Kullanici_Adi, @Sifre)";
 
@@ -42,13 +36,36 @@ namespace Hotel_Management_Api.Repositories
                 {
 
                     cmd.Parameters.AddWithValue("@Kullanici_Adi", user.Kullanici_Adi);
-                    cmd.Parameters.AddWithValue("@Sifre", user.Sifre);
+                    cmd.Parameters.AddWithValue("@Sifre", hashedPassword);
                     
 
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();
                     return rowsAffected > 0;
                 }       
             }
+        }
+
+        public async Task<bool> DoesUserExistAsync(string name)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+
+                await connection.OpenAsync();
+                string doesUserExist = "SELECT COUNT(*) FROM user WHERE Kullanici_Adi = @Kullanici_Adi";
+
+
+                using (var command = new MySqlCommand(doesUserExist, connection))
+                {
+                    command.Parameters.AddWithValue("@Kullanici_Adi", name);
+                    var count = Convert.ToInt32(await command.ExecuteScalarAsync());
+
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

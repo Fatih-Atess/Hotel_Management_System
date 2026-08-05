@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BCrypt.Net;
 
 namespace Hotel_Management_Api.Services
 {
@@ -21,18 +22,24 @@ namespace Hotel_Management_Api.Services
 
         public async Task<LoginResponseDto> AuthenticateAsync(string username, string password)
         {
-            string role = await _authRepository.GetRoleAsync(username, password);
+            var userCredentials = await _authRepository.GetUserCredentialsAsync(username);
 
-            if (role == null)
+            if(userCredentials == null)
             {
                 return null;
             }
 
-            string token = GenerateJwtToken(username, role);
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, userCredentials.Value.PasswordHash);
+            if(!isPasswordValid){
+                return null;
+            }
+            
+
+            string token = GenerateJwtToken(username, userCredentials.Value.Rol);
             return new LoginResponseDto
             {
                 Token = token,
-                Role = role
+                Role = userCredentials.Value.Rol
             };
         }
         private string GenerateJwtToken(string username, string role)
@@ -52,7 +59,7 @@ namespace Hotel_Management_Api.Services
                 issuer: jwtSettings["Issuer"],
                 audience: jwtSettings["Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(2),
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds
             );
 
