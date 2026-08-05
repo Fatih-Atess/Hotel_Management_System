@@ -105,7 +105,7 @@ namespace Hotel_Management_Api.Repositories
                     var count = Convert.ToInt32(await command.ExecuteScalarAsync());
 
                     if (count > 0)
-                    {
+                    { 
                         return false;
                     }
                 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Room, Reservation, ReservationRoom } from '../models/models';
+import { Room, Reservation, ReservationRoom, UserDto } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +37,8 @@ export class Api {
   }
   deleteReservation(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/api/Reservation/${id}`);
+  }
+  addUser(user: UserDto): Observable<any> {
+    return this.http.post(`${this.baseUrl}/api/User`, user);
   }
 }

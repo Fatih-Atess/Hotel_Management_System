@@ -1,29 +1,36 @@
 # 🏨 Hotel Management System (Otel Yönetim Sistemi)
 
-A full-stack, enterprise-ready **Hotel Management System** built with a modern **.NET 10 Web API** backend and a responsive **Angular 21** frontend. The system provides seamless online room reservations for customers and a comprehensive administrative management dashboard for hotel staff.
+A full-stack, enterprise-ready **Hotel Management System** built with a modern **.NET 10 Web API** backend and a responsive **Angular 21** frontend. The system provides secure JWT authentication, role-based access control (Admin & Customer), seamless online room reservations for customers, and a comprehensive administrative management dashboard for hotel staff.
 
 ---
 
 ## 🚀 Key Features
 
+### 🔐 Authentication & Authorization (New)
+- **JWT (JSON Web Token) Security**: Token-based authentication generated upon login and validated across secure API requests.
+- **User Registration & Login (`/login`)**: Interactive view supporting both user login and account registration with password visibility toggle.
+- **Role-Based Access Control (RBAC)**: Supports `admin` and `customer` roles with custom route guards (`adminGuard`, `authGuard`, `loginGuard`).
+- **HTTP Interceptor (`authInterceptor`)**: Automatically injects JWT Bearer tokens into outgoing HTTP requests for seamless authorized communication.
+- **Dynamic Header & Session Management**: Responsive header component reflecting current user login status, role, and quick logout functionality.
+
 ### 👤 Customer Portal (`/customer`)
 - **Real-Time Room Availability Search**: Filter available rooms by specifying check-in and check-out dates.
 - **Instant Price Calculation**: Automatic total price computation based on total nights stayed and nightly room rates.
-- **Online Reservation Booking**: Guests can easily select rooms and complete bookings by submitting their personal details.
-- **Validation & Date Constraints**: Built-in validation preventing booking past dates or invalid check-out ranges.
+- **Online Reservation Booking**: Guests can easily select rooms and complete bookings linked to registered user accounts.
+- **Validation & Date Constraints**: Built-in validation preventing past date selection or invalid check-out ranges.
 
 ### 🛡️ Admin Management Dashboard (`/admin`)
 - **Room Management (CRUD)**:
   - **Create**: Add new hotel rooms with room numbers, room types (Single, Double, Suite, etc.), and nightly prices.
-  - **Update (New)**: Edit existing room details (`Oda Numarası`, `Tip`, and `Gecelik Fiyat`) via an interactive Pop-up Modal.
+  - **Update**: Edit existing room details (`Oda Numarası`, `Tip`, and `Gecelik Fiyat`) via an interactive Pop-up Modal.
   - **Delete**: Remove rooms from the system.
-- **Occupancy Protection (`durum === 1`) (New)**:
+- **Occupancy Protection (`durum === 1`)**:
   - Rooms currently reserved (`durum === 1`) are protected against accidental updates or deletions.
   - Action buttons (`Güncelle` and `Odayı Sil`) are automatically **disabled** and **faded** (`opacity: 0.45`, `pointer-events: none`).
 - **Reservation Oversight**: View all active and historical bookings complete with customer names, assigned rooms, stay dates, and total charges.
 - **Booking Cancellation**: Instantly cancel or remove customer reservations.
 - **Availability Monitoring**: Search and verify room availability directly from the admin workspace.
-- **Modern Pop-up UI & Error Handling (New)**:
+- **Modern Pop-up UI & Error Handling**:
   - **Glassmorphism Backdrop Blur**: Pop-up dialogs with blurred backdrops (`backdrop-filter: blur(6px)`).
   - **Smooth CSS Animations**: Entrance keyframe scaling and slide animations (`animate-popup`).
   - **Custom Error Alert Modal**: Reusable pop-up dialog for friendly error notification displays.
@@ -34,8 +41,9 @@ A full-stack, enterprise-ready **Hotel Management System** built with a modern *
 
 | Layer | Technology / Framework | Key Packages & Tools |
 |---|---|---|
-| **Backend** | .NET 10 Web API (C#) | `MySql.Data` (v9.7.0), `Swashbuckle.AspNetCore` (Swagger) |
-| **Frontend** | Angular 21 (Standalone Components) | TypeScript, RxJS, Angular Forms, Vitest |
+| **Backend** | .NET 10 Web API (C#) | `Microsoft.AspNetCore.Authentication.JwtBearer`, `MySql.Data` (v9.7.0), `Swashbuckle.AspNetCore` (Swagger) |
+| **Frontend** | Angular 21 (Standalone Components) | TypeScript, RxJS, Angular Forms, Angular Router, Vitest |
+| **Authentication** | JWT (JSON Web Tokens) | `System.IdentityModel.Tokens.Jwt`, LocalStorage Session Management |
 | **Database** | MySQL RDBMS | Raw SQL execution via Repository Pattern |
 | **API Protocol** | RESTful JSON API | Swagger OpenAPI UI, CORS enabled for Angular |
 
@@ -43,34 +51,57 @@ A full-stack, enterprise-ready **Hotel Management System** built with a modern *
 
 ## 🏗️ Architecture & System Workflow
 
-The project follows a clean **Repository Pattern** on the backend to isolate business logic from database interactions, paired with modular **Angular Standalone Components** on the frontend.
+The project follows a clean **Repository Pattern** on the backend to isolate business logic from database interactions, paired with modular **Angular Standalone Components**, route guards, and HTTP interceptors on the frontend.
 
 ```mermaid
 graph TD
     subgraph Frontend [Angular 21 UI]
+        LP[Login & Register Component]
         CP[Customer Portal Component]
         AP[Admin Dashboard Component]
-        SVC[Api Service Http Client]
-        CP -->|HTTP Requests| SVC
-        AP -->|HTTP Requests| SVC
+        AG[Auth & Admin Route Guards]
+        AI[Auth HTTP Interceptor]
+        AS[Auth Service]
+        ApiS[API Service]
+
+        LP -->|Login / Register| AS
+        AG -->|Protect Routes| CP
+        AG -->|Protect Routes| AP
+        AI -->|Attach Bearer Token| ApiS
+        CP -->|HTTP Requests| ApiS
+        AP -->|HTTP Requests| ApiS
     end
 
     subgraph Backend [.NET 10 Web API]
+        AC[Auth Controller]
+        UC[User Controller]
         RC[Rooms Controller]
         RSC[Reservation Controller]
+        
+        AuthSvc[Auth Service]
+        AR[Auth Repository]
+        UR[User Repository]
         RR[Room Repository]
         RSR[Reservation Repository]
-        
-        SVC -->|/api/rooms| RC
-        SVC -->|/api/reservation| RSC
-        RC -->|Dependency Injection| RR
-        RSC -->|Dependency Injection| RSR
+
+        ApiS -->|/api/auth/login| AC
+        ApiS -->|/api/user| UC
+        ApiS -->|/api/rooms| RC
+        ApiS -->|/api/reservation| RSC
+
+        AC --> AuthSvc
+        AuthSvc --> AR
+        UC --> UR
+        RC --> RR
+        RSC --> RSR
     end
 
     subgraph Database [MySQL Database]
         DB[(hotel_management_api_db)]
-        RR -->|MySqlConnection & SQL Queries| DB
-        RSR -->|MySqlConnection & SQL Queries| DB
+        AR -->|MySqlConnection| DB
+        UR -->|MySqlConnection| DB
+        RR -->|MySqlConnection| DB
+        RSR -->|MySqlConnection| DB
     end
 ```
 
@@ -78,10 +109,16 @@ graph TD
 
 ## 📊 Database Schema
 
-The database relies on a relational schema with foreign key constraints and cascade rules between rooms and reservations.
+The database relies on a relational schema with foreign key constraints connecting users, rooms, and reservations.
 
 ```mermaid
 erDiagram
+    USER {
+        int ID PK
+        string Kullanici_Adi UK
+        string Sifre
+        string Rol "DEFAULT: customer"
+    }
     ROOM {
         int ID PK
         string Oda_Numarasi UK
@@ -92,11 +129,12 @@ erDiagram
     RESERVATION {
         int ID PK
         int Oda_ID FK
-        string Musteri_Ad_Soyad
+        string Musteri_Ad_Soyad FK
         date Giris_Tarihi
         date Cikis_Tarihi
         decimal Toplam_Ucret
     }
+    USER ||--o{ RESERVATION : "makes"
     ROOM ||--o{ RESERVATION : "has many"
 ```
 
@@ -108,25 +146,41 @@ USE hotel_management_api_db;
 
 CREATE TABLE room (
   ID INT AUTO_INCREMENT PRIMARY KEY,
-  Oda_Numarası VARCHAR(10) UNIQUE NOT NULL,
+  Oda_Numarasi VARCHAR(10) UNIQUE NOT NULL,
   Tip VARCHAR(50) NOT NULL,
-  Gecelik_Fiyat DECIMAL(10,2) NOT NULL
+  Gecelik_Fiyat DECIMAL(10,2) NOT NULL,
+  Durum INT DEFAULT 0
+);
+
+CREATE TABLE user (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  Kullanici_Adi VARCHAR(50) NOT NULL UNIQUE,
+  Sifre VARCHAR(255) NOT NULL,
+  Rol VARCHAR(20) DEFAULT 'customer'
 );
 
 CREATE TABLE reservation (
   ID INT AUTO_INCREMENT PRIMARY KEY,
   Oda_ID INT,
-  Musteri_Ad_Soyad VARCHAR(100) NOT NULL,
+  Musteri_Ad_Soyad VARCHAR(100),
   Giris_Tarihi DATE NOT NULL,
   Cikis_Tarihi DATE NOT NULL,
   Toplam_Ucret DECIMAL(10,2) NOT NULL,
-  FOREIGN KEY (Oda_ID) REFERENCES room(ID)
+  FOREIGN KEY (Oda_ID) REFERENCES room(ID),
+  FOREIGN KEY (Musteri_Ad_Soyad) REFERENCES user(Kullanici_Adi)
 );
 ```
 
 ---
 
 ## 📡 API Reference
+
+### 🔑 Authentication & Users (`/api/auth`, `/api/user`)
+
+| Method | Endpoint | Description | Body Params |
+|---|---|---|---|
+| `POST` | `/api/auth/login` | Authenticate user and issue JWT Token | `{ username, password }` |
+| `POST` | `/api/user` | Register a new user account | `{ kullanici_Adi, sifre }` |
 
 ### 🚪 Rooms (`/api/rooms`)
 
@@ -155,24 +209,31 @@ Hotel_Management_System/
 │
 ├── Hotel_Management_Api/                  # .NET 10 Web API Backend Project
 │   └── Hotel_Management_Api/
-│       ├── Controllers/                   # API Endpoints (RoomsController, ReservationController)
-│       ├── DTOs/                          # Data Transfer Objects
-│       ├── Interfaces/                    # Repository Interfaces (IRoomRepository, etc.)
-│       ├── Models/                        # Entity Domain Models (Room, Reservation)
-│       ├── Repositories/                  # Data Access Layer using MySql.Data
-│       ├── Program.cs                     # Middleware, Service Injection & CORS Config
-│       └── appsettings.json               # Backend Configuration & Connection Strings
+│       ├── Controllers/                   # API Endpoints (AuthController, UserController, RoomsController, ReservationController)
+│       ├── DTOs/                          # Data Transfer Objects (LoginRequestDto, LoginResponseDto, UserDto, RoomDto, etc.)
+│       ├── Interfaces/                    # Repository & Service Interfaces (IAuthRepository, IAuthService, IUserRepository, etc.)
+│       ├── Models/                        # Entity Domain Models (User, Room, Reservation)
+│       ├── Repositories/                  # Data Access Layer using MySql.Data (AuthRepository, UserRepository, RoomRepository, etc.)
+│       ├── Services/                      # Business & JWT Token Logic (AuthService)
+│       ├── Program.cs                     # JWT Middleware, Dependency Injection & CORS Config
+│       └── appsettings.json               # JWT Secret Key & Database Connection String
 │
 ├── Hotel_Management_Frontend/             # Angular 21 Single-Page Application
 │   └── src/app/
-│       ├── components/                    # Reusable UI Components (Header, etc.)
-│       ├── models/                        # TypeScript Interfaces (Room with durum property, Reservation)
-│       ├── pages/                         # Main Views
-│       │   ├── admin/                     # Admin Management Dashboard (with Update Modal & Error Alert)
+│       ├── components/                    # UI Components
+│       │   ├── header/                    # Dynamic Navigation Header (Auth Status & Logout)
+│       │   └── login/                     # Login & Account Registration Page
+│       ├── guards/                        # Route Protection Guards (auth.guard.ts: authGuard, adminGuard, loginGuard)
+│       ├── models/                        # TypeScript Interfaces (Room, Reservation, UserDto)
+│       ├── pages/                         # Main Page Views
+│       │   ├── admin/                     # Admin Dashboard (Room CRUD & Reservation Oversight)
 │       │   └── customer/                  # Guest Reservation Portal
-│       ├── services/                      # API Client Service (HttpClient integration)
-│       ├── app.routes.ts                  # Angular Application Routing Configuration
-│       └── app.config.ts                  # App Providers & HTTP Client Setup
+│       ├── services/                      # Services
+│       │   ├── api.ts                     # REST Client Service
+│       │   └── auth.ts                    # JWT Authentication & Role Management Service
+│       ├── app.routes.ts                  # Application Routes & Guard Configurations
+│       ├── app.config.ts                  # App Providers & HTTP Interceptor Registration
+│       └── auth.interceptor.ts            # Bearer Token HTTP Interceptor
 │
 └── Hotel_Management_db.sql                # Database Creation & Table Schema Script
 ```
@@ -192,7 +253,7 @@ Ensure you have the following software installed:
 
 ### 2. Database Setup
 1. Open your MySQL client (e.g., MySQL Workbench or Command Line).
-2. Execute the provided `Hotel_Management_db.sql` script to create the schema and required tables:
+2. Execute the provided `Hotel_Management_db.sql` script to create the schema and required tables (`room`, `user`, `reservation`):
    ```bash
    mysql -u root -p < Hotel_Management_db.sql
    ```
@@ -204,11 +265,16 @@ Ensure you have the following software installed:
    ```bash
    cd Hotel_Management_Api/Hotel_Management_Api
    ```
-2. Configure your MySQL database connection string. Update your `appsettings.Development.json` or `.NET User Secrets`:
+2. Configure your MySQL database connection string and JWT parameters in `appsettings.json` or `appsettings.Development.json`:
    ```json
    {
      "ConnectionStrings": {
        "DefaultConnection": "Server=localhost;Database=hotel_management_api_db;Uid=root;Pwd=YOUR_MYSQL_PASSWORD;"
+     },
+     "Jwt": {
+       "Issuer": "http://localhost:5151",
+       "Audience": "http://localhost:4200",
+       "Key": "YOUR_SECRET_JWT_KEY_HERESHOULDBE32BYTESMIN"
      }
    }
    ```
@@ -218,7 +284,7 @@ Ensure you have the following software installed:
    dotnet run
    ```
 4. Access the Swagger UI for interactive API documentation:
-   - **Swagger URL:** `https://localhost:7028/swagger` (or `http://localhost:5000/swagger`)
+   - **Swagger URL:** `http://localhost:5151/swagger` (or `https://localhost:7028/swagger`)
 
 ---
 
@@ -236,8 +302,9 @@ Ensure you have the following software installed:
    npm start
    ```
 4. Open your browser and navigate to:
-   - **Customer Portal:** `http://localhost:4200/customer`
-   - **Admin Dashboard:** `http://localhost:4200/admin`
+   - **Login Page:** `http://localhost:4200/login`
+   - **Customer Portal:** `http://localhost:4200/customer` (Requires authentication)
+   - **Admin Dashboard:** `http://localhost:4200/admin` (Requires admin role)
 
 ---
 

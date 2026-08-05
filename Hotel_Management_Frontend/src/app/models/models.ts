@@ -6,6 +6,11 @@ export interface Room {
     durum: number;
 }
 
+export interface UserDto {
+    kullanici_Adi: string;
+    sifre: string;
+}
+
 
 export interface Reservation {
     id?: number;
